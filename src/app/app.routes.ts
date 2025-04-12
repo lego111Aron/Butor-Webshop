@@ -7,7 +7,7 @@ export const routes: Routes = [
     },
     {
         path: 'tasks',
-        loadComponent: () => import('./pages/logine/logine.component').then(m => m.LogineComponent)
+        loadComponent: () => import('./pages/login/login.component').then(m => m.LoginComponent)
     },
     {
         path: 'profile',
