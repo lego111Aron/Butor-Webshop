@@ -75,24 +75,33 @@
 
 <main class="main">
   <div class="content">
-    <div class="form-group">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form-group">
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Felhasználónév</mat-label>
-        <input matInput type="text" placeholder="Felhasználónév" />
+        <input matInput type="text" formControlName="username" placeholder="Felhasználónév" />
+        <mat-error *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched">
+          A felhasználónév megadása kötelező!
+        </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Jelszó</mat-label>
-        <input matInput type="password" placeholder="Jelszó" />
+        <input matInput type="password" formControlName="password" placeholder="Jelszó" />
+        <mat-error *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+          A jelszó megadása kötelező!
+        </mat-error>
       </mat-form-field>
-    </div>
-    <div class="divider" role="separator" aria-label="Divider"></div>
-    <div class="button-group">
-      <button mat-raised-button color="primary" style="background-color: var(--blue-gray); color: var(--light-gray);">
-        Bejelentkezés
-      </button>
-      <button mat-raised-button color="primary" [routerLink]="'/signup'" style="background-color: var(--blue-gray); color: var(--light-gray);">
-        Regisztráció
-      </button>
-    </div>
+
+      <!-- Divider hozzáadása -->
+      <mat-divider></mat-divider>
+
+      <div class="button-group">
+        <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">
+          Bejelentkezés
+        </button>
+        <button mat-raised-button color="primary" [routerLink]="'/signup'">
+          Regisztráció
+        </button>
+      </div>
+    </form>
   </div>
 </main>

@@ -75,37 +75,55 @@
 
 <main class="main">
   <div class="content">
-    <div class="form-group">
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="form-group">
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Felhasználónév</mat-label>
-        <input matInput type="text" placeholder="Felhasználónév" />
+        <input matInput type="text" formControlName="username" placeholder="Felhasználónév" />
+        <mat-error *ngIf="signupForm.get('username')?.invalid && signupForm.get('username')?.touched">
+          A felhasználónév megadása kötelező!
+        </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Email cím</mat-label>
         <mat-icon matPrefix>email</mat-icon>
-        <input matInput type="email" placeholder="Email cím" />
+        <input matInput type="email" formControlName="email" placeholder="Email cím" />
+        <mat-error *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched">
+          Érvényes email cím megadása kötelező!
+        </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Lakcím</mat-label>
-        <input matInput type="text" placeholder="Lakcím" />
+        <input matInput type="text" formControlName="address" placeholder="Lakcím" />
+        <mat-error *ngIf="signupForm.get('address')?.invalid && signupForm.get('address')?.touched">
+          A lakcím megadása kötelező!
+        </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Jelszó</mat-label>
-        <input matInput type="password" placeholder="Jelszó" />
+        <input matInput type="password" formControlName="password" placeholder="Jelszó" />
+        <mat-error *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched">
+          A jelszó megadása kötelező!
+        </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Jelszó megerősítése</mat-label>
-        <input matInput type="password" placeholder="Jelszó megerősítése" />
+        <input matInput type="password" formControlName="confirmPassword" placeholder="Jelszó megerősítése" />
+        <mat-error *ngIf="signupForm.get('confirmPassword')?.invalid && signupForm.get('confirmPassword')?.touched">
+          A jelszó megerősítése kötelező!
+        </mat-error>
       </mat-form-field>
-    </div>
-    <div class="divider" role="separator" aria-label="Divider"></div>
-    <div class="button-group">
-      <button mat-raised-button color="primary" style="background-color: var(--blue-gray); color: var(--light-gray);">
-        Regisztráció
-      </button>
-      <button mat-raised-button color="primary" [routerLink]="'/login'" style="background-color: var(--blue-gray); color: var(--light-gray);">
-        Már van fiókom
-      </button>
-    </div>
+
+      <!-- Divider hozzáadása -->
+      <mat-divider></mat-divider>
+
+      <div class="button-group">
+        <button mat-raised-button color="primary" type="submit" [disabled]="signupForm.invalid">
+          Regisztráció
+        </button>
+        <button mat-raised-button color="primary" [routerLink]="'/login'">
+          Már van fiókom
+        </button>
+      </div>
+    </form>
   </div>
 </main>
