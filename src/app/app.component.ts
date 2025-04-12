@@ -25,6 +25,7 @@ import { CommonModule } from '@angular/common';
 export class AppComponent implements OnInit {
   title = 'learnflow';
   isLoggedIn = false;
+  isDropdownOpen = false; // Új állapotváltozó
 
   constructor() {}
 
@@ -42,7 +43,7 @@ export class AppComponent implements OnInit {
     window.location.href = '/home';
   }
 
-  onToggleSidenav(sidenav: MatSidenav){
-    sidenav.toggle();
+  toggleDropdownMenu(): void {
+    this.isDropdownOpen = !this.isDropdownOpen;
   }
 }

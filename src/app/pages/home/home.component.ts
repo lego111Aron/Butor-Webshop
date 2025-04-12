@@ -1,17 +1,26 @@
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
+import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
-  standalone: true, // Ha standalone komponens, akkor szükséges
+  standalone: true,
   imports: [
-    MatButtonModule, // Angular Material gombok
-    MatIconModule,   // Angular Material ikonok
-    RouterModule     // RouterLink használatához
+    MatButtonModule,
+    MatIconModule,
+    RouterModule
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {}
+export class HomeComponent {
+  constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {
+    // Regisztráljuk a GitHub ikont
+    this.matIconRegistry.addSvgIcon(
+      'github',
+      this.domSanitizer.bypassSecurityTrustResourceUrl('icons/github.svg')
+    );
+  }
+}

@@ -4,7 +4,7 @@
   <a mat-list-item routerLink="/home" routerLinkActive="active-list-item" (click)="closeMenu()">
     <mat-icon matListItemIcon>home</mat-icon>
     <span matListItemTitle>Home</span>
-  </a>
+  </a><!-- 
   <a mat-list-item routerLink="/tasks" routerLinkActive="active-list-item" (click)="closeMenu()">
     <mat-icon matListItemIcon>assignment</mat-icon>
     <span matListItemTitle>Tasks</span>
@@ -12,7 +12,7 @@
   <a mat-list-item routerLink="/completed" routerLinkActive="active-list-item" (click)="closeMenu()">
     <mat-icon matListItemIcon>done_all</mat-icon>
     <span matListItemTitle>Completed Tasks</span>
-  </a>
+  </a> -->
   @if (isLoggedIn) {
     <a mat-list-item routerLink="/profile" routerLinkActive="active-list-item" (click)="closeMenu()">
       <mat-icon matListItemIcon>person</mat-icon>
@@ -22,7 +22,13 @@
   @if (!isLoggedIn) {
     <a mat-list-item routerLink="/login" routerLinkActive="active-list-item" (click)="closeMenu()">
       <mat-icon matListItemIcon>login</mat-icon>
-      <span matListItemTitle>Login</span>
+      <span matListItemTitle>Bejelentkezés</span>
+    </a>
+  }
+  @if (!isLoggedIn) {
+    <a mat-list-item routerLink="/signup" routerLinkActive="active-list-item" (click)="closeMenu()">
+      <mat-icon matListItemIcon>assignment</mat-icon>
+      <span matListItemTitle>Regisztráció</span>
     </a>
   }
   @if (isLoggedIn) {
