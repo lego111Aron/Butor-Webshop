@@ -1,8 +1,15 @@
+
 a {
     text-decoration: none;
-    color: white;
+    color: var(--light-gray); /* Szöveg színe */
     font-size: 20px;
     border-radius: 0 !important;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+a:hover {
+    background-color: var(--blue-gray); /* Hover háttérszín */
+    color: var(--orange); /* Hover szöveg szín */
 }
 
 .mdc-list-item:focus::before {
@@ -10,13 +17,24 @@ a {
 }
 
 .active-list-item {
-    background-color: rgba(90, 74, 247, 0.3);
-    color: white;
+    background-color: var(--blue-gray); /* Aktív elem háttérszíne */
+    color: var(--orange); /* Aktív elem szöveg színe */
     font-weight: bold;
 }
 
 mat-nav-list {
     min-width: 200px;
+    background-color: var(--dark-gray); /* Menü háttérszíne */
+    color: var(--medium-gray); /* Alapértelmezett szöveg színe */
+    padding: 0;
+    border-right: 1px solid var(--medium-gray); /* Menü elválasztó vonal */
 }
 
+mat-icon {
+    color: var(--light-gray); /* Ikon színe */
+}
+
+mat-icon:hover {
+    color: var(--orange); /* Ikon hover színe */
+}
 

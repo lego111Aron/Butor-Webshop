@@ -15,24 +15,37 @@ ul {
 
 a {
     text-decoration: none;
-    color: white;
+    color: var(--light-gray); /* Szöveg színe */
     font-size: 25px;
+    transition: color 0.3s ease;
+
+    &:hover {
+        color: var(--orange); /* Hover szín */
+    }
 }
 
 mat-sidenav-container {
     height: 100%;
 }
 
-mat-toolbar{
-    background-color: #005cbb;
-    color: white;
+mat-toolbar {
+    background-color: var(--blue-gray); /* Toolbar háttérszín */
+    color: var(--light-gray); /* Toolbar szöveg színe */
+    transition: color 0.3s ease;
+
     mat-icon {
-        color: white;
+        color: var(--light-gray); /* Ikon színe */
+        transition: color 0.3s ease;
+
+        &:hover {
+            color: var(--orange); /* Ikon hover színe */
+        }
     }
 }
 
 mat-sidenav {
     border-radius: 0;
+    background-color: var(--dark-gray); /* Sidenav háttérszín */
 }
 
 .menu-toggle-button {
