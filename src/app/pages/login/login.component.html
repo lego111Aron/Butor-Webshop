@@ -75,6 +75,12 @@
 
 <main class="main">
   <div class="content">
+    <!-- Töltőképernyő -->
+    <div class="loading-overlay" *ngIf="loading">
+      <mat-spinner></mat-spinner>
+      <p>Egy pillanat...</p>
+    </div>
+
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form-group">
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Felhasználónév</mat-label>
@@ -91,11 +97,10 @@
         </mat-error>
       </mat-form-field>
 
-      <!-- Divider hozzáadása -->
       <mat-divider></mat-divider>
 
       <div class="button-group">
-        <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">
+        <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid || loading">
           Bejelentkezés
         </button>
         <button mat-raised-button color="primary" [routerLink]="'/signup'">

@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { RouterModule } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
 import { MatDividerModule } from '@angular/material/divider';
+import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,8 @@ import { CommonModule } from '@angular/common';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatDividerModule, // Divider modul importálása
+    MatDividerModule,
+    MatProgressSpinnerModule, // Spinner modul importálása
     RouterModule
   ],
   templateUrl: './login.component.html',
@@ -25,6 +27,7 @@ import { CommonModule } from '@angular/common';
 })
 export class LoginComponent {
   loginForm: FormGroup;
+  loading = false; // Töltőképernyő állapota
 
   constructor(private fb: FormBuilder) {
     this.loginForm = this.fb.group({
@@ -35,8 +38,12 @@ export class LoginComponent {
 
   onSubmit(): void {
     if (this.loginForm.valid) {
-      const { username, password } = this.loginForm.value;
-      console.log('Bejelentkezési adatok:', { username, password });
+      this.loading = true; // Töltőképernyő megjelenítése
+      setTimeout(() => {
+        this.loading = false; // Töltőképernyő elrejtése 3 másodperc után
+        const { username, password } = this.loginForm.value;
+        console.log('Bejelentkezési adatok:', { username, password });
+      }, 3000);
     }
   }
 }

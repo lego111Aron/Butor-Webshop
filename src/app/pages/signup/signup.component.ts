@@ -5,6 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -20,6 +21,7 @@ import { RouterModule } from '@angular/router';
     MatButtonModule,
     MatIconModule,
     MatDividerModule,
+    MatProgressSpinnerModule, // Spinner modul importálása
     RouterModule
   ],
   templateUrl: './signup.component.html',
@@ -27,6 +29,7 @@ import { RouterModule } from '@angular/router';
 })
 export class SignupComponent {
   signupForm: FormGroup;
+  loading = false; // Töltőképernyő állapota
 
   constructor(private fb: FormBuilder) {
     this.signupForm = this.fb.group({
@@ -40,9 +43,12 @@ export class SignupComponent {
 
   onSubmit(): void {
     if (this.signupForm.valid) {
-      const { username, email, address, password, confirmPassword } = this.signupForm.value;
-      console.log('Regisztrációs adatok:', { username, email, address, password, confirmPassword });
-      // Itt lehet kezelni a regisztrációs logikát
+      this.loading = true; // Töltőképernyő megjelenítése
+      setTimeout(() => {
+        this.loading = false; // Töltőképernyő elrejtése 3 másodperc után
+        const { username, email, address, password, confirmPassword } = this.signupForm.value;
+        console.log('Regisztrációs adatok:', { username, email, address, password, confirmPassword });
+      }, 3000);
     }
   }
 }
