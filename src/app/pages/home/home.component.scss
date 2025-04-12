@@ -1,0 +1,80 @@
+:host {
+  --gradient-vertical: linear-gradient(
+    180deg,
+    var(--orange) 0%,
+    var(--blue-gray) 100%
+  );
+
+  --gradient-horizontal: linear-gradient(
+    90deg,
+    var(--orange) 0%,
+    var(--blue-gray) 100%
+  );
+
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+main {
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  box-sizing: inherit;
+  position: relative;
+  background-color: var(--dark-gray);
+}
+
+.content {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 700px;
+  margin-bottom: 3rem;
+}
+
+.divider {
+  width: 1px;
+  background: var(--gradient-vertical);
+  margin-inline: 0.5rem;
+}
+
+.pill-group {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+button[mat-raised-button] {
+  background-color: var(--blue-gray);
+  color: var(--light-gray);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+button[mat-raised-button]:hover {
+  background-color: var(--orange); /* Hover állapotban narancssárga */
+  color: var(--light-gray); /* Szöveg színe változatlan */
+}
+
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: 0.73rem;
+  margin-top: 1.5rem;
+}
+
+.social-links mat-icon {
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover mat-icon {
+  color: var(--orange);
+}

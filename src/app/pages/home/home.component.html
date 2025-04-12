@@ -1,141 +1,23 @@
-<style>
-  :host {
-    --gradient-vertical: linear-gradient(
-      180deg,
-      var(--orange) 0%,
-      var(--blue-gray) 100%
-    );
-
-    --gradient-horizontal: linear-gradient(
-      90deg,
-      var(--orange) 0%,
-      var(--blue-gray) 100%
-    );
-
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-      Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-      "Segoe UI Symbol";
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  h1 {
-    font-size: 3.125rem;
-    color: var(--light-gray);
-    font-weight: 500;
-    line-height: 100%;
-    letter-spacing: -0.125rem;
-    margin: 0;
-  }
-
-  p {
-    margin: 0;
-    color: var(--light-gray);
-  }
-
-  main {
-    width: 100%;
-    min-height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-    box-sizing: inherit;
-    position: relative;
-    background-color: var(--dark-gray);
-  }
-
-  .content {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    max-width: 700px;
-    margin-bottom: 3rem;
-  }
-
-  .divider {
-    width: 1px;
-    background: var(--gradient-vertical);
-    margin-inline: 0.5rem;
-  }
-
-  .pill-group {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    flex-wrap: wrap;
-    gap: 1.25rem;
-  }
-
-  .pill {
-    display: flex;
-    align-items: center;
-    background: var(--blue-gray);
-    color: var(--light-gray);
-    padding-inline: 0.75rem;
-    padding-block: 0.375rem;
-    border-radius: 2.75rem;
-    border: 0;
-    transition: background 0.3s ease;
-    font-size: 0.875rem;
-    font-weight: 500;
-    text-decoration: none;
-  }
-
-  .pill:hover {
-    background: var(--orange);
-  }
-
-  .social-links {
-    display: flex;
-    align-items: center;
-    gap: 0.73rem;
-    margin-top: 1.5rem;
-  }
-
-  .social-links path {
-    transition: fill 0.3s ease;
-    fill: var(--medium-gray);
-  }
-
-  .social-links a:hover svg path {
-    fill: var(--orange);
-  }
-
-  @media screen and (max-width: 650px) {
-    .content {
-      flex-direction: column;
-      width: max-content;
-    }
-
-    .divider {
-      height: 1px;
-      width: 100%;
-      background: var(--gradient-horizontal);
-      margin-block: 1.5rem;
-    }
-  }
-</style>
-
 <main class="main">
   <div class="content">
     <div class="left-side">
       <h1>Bútor webshop</h1>
-    <p style="color: var(--medium-gray);">Nézelődj kedvedre és fedezd fel hatalmas kínálatunk.</p>
+      <p style="color: var(--medium-gray);">
+        Nézelődj kedvedre és fedezd fel hatalmas kínálatunk.
+      </p>
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>
     <div class="right-side">
       <div class="pill-group">
-        <a class="pill" href="/login">
-          <span>Bejelentkezés</span>
-        </a>
-        <a class="pill" href="/signup">
-          <span>Regisztráció</span>
-        </a>
-        <a class="pill" href="/nincskesz">
-          <span>Termékek</span>
-        </a>
+        <button mat-raised-button color="primary" [routerLink]="'/login'" style="background-color: var(--blue-gray); color: var(--light-gray);">
+          Bejelentkezés
+        </button>
+        <button mat-raised-button color="primary" [routerLink]="'/signup'" style="background-color: var(--blue-gray); color: var(--light-gray);">
+          Regisztráció
+        </button>
+        <button mat-raised-button color="primary" [routerLink]="'/nincskesz'" style="background-color: var(--blue-gray); color: var(--light-gray);">
+          Termékek
+        </button>
       </div>
       <div class="social-links">
         <a
@@ -144,18 +26,7 @@
           target="_blank"
           rel="noopener"
         >
-          <svg
-            width="25"
-            height="24"
-            viewBox="0 0 25 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            alt="Github"
-          >
-            <path
-              d="M12.3047 0C5.50634 0 0 5.50942 0 12.3047C0 17.7423 3.52529 22.3535 8.41332 23.9787C9.02856 24.0946 9.25414 23.7142 9.25414 23.3871C9.25414 23.0949 9.24389 22.3207 9.23876 21.2953C5.81601 22.0377 5.09414 19.6444 5.09414 19.6444C4.53427 18.2243 3.72524 17.8449 3.72524 17.8449C2.61064 17.082 3.81137 17.0973 3.81137 17.0973C5.04697 17.1835 5.69604 18.3647 5.69604 18.3647C6.79321 20.2463 8.57636 19.7029 9.27978 19.3881C9.39052 18.5924 9.70736 18.0499 10.0591 17.7423C7.32641 17.4347 4.45429 16.3765 4.45429 11.6618C4.45429 10.3185 4.9311 9.22133 5.72065 8.36C5.58222 8.04931 5.16694 6.79833 5.82831 5.10337C5.82831 5.10337 6.85883 4.77319 9.2121 6.36459C10.1965 6.09082 11.2424 5.95546 12.2883 5.94931C13.3342 5.95546 14.3801 6.09082 15.3644 6.36459C17.7023 4.77319 18.7328 5.10337 18.7328 5.10337C19.3942 6.79833 18.9789 8.04931 18.8559 8.36C19.6403 9.22133 20.1171 10.3185 20.1171 11.6618C20.1171 16.3888 17.2409 17.4296 14.5031 17.7321C14.9338 18.1012 15.3337 18.8559 15.3337 20.0084C15.3337 21.6552 15.3183 22.978 15.3183 23.3779C15.3183 23.7009 15.5336 24.0854 16.1642 23.9623C21.0871 22.3484 24.6094 17.7341 24.6094 12.3047C24.6094 5.50942 19.0999 0 12.3047 0Z"
-            />
-          </svg>
+          <mat-icon svgIcon="github" style="color: var(--medium-gray);"></mat-icon>
         </a>
         <a
           href="https://twitter.com/angular"
@@ -163,18 +34,7 @@
           target="_blank"
           rel="noopener"
         >
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            alt="Twitter"
-          >
-            <path
-              d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
-            />
-          </svg>
+          <mat-icon svgIcon="twitter" style="color: var(--medium-gray);"></mat-icon>
         </a>
         <a
           href="https://www.youtube.com/channel/UCbn1OgGei-DV7aSRo_HaAiw"
@@ -182,20 +42,7 @@
           target="_blank"
           rel="noopener"
         >
-          <svg
-            width="29"
-            height="20"
-            viewBox="0 0 29 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            alt="Youtube"
-          >
-            <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              d="M27.4896 1.52422C27.9301 1.96749 28.2463 2.51866 28.4068 3.12258C29.0004 5.35161 29.0004 10 29.0004 10C29.0004 10 29.0004 14.6484 28.4068 16.8774C28.2463 17.4813 27.9301 18.0325 27.4896 18.4758C27.0492 18.9191 26.5 19.2389 25.8972 19.4032C23.6778 20 14.8068 20 14.8068 20C14.8068 20 5.93586 20 3.71651 19.4032C3.11363 19.2389 2.56449 18.9191 2.12405 18.4758C1.68361 18.0325 1.36732 17.4813 1.20683 16.8774C0.613281 14.6484 0.613281 10 0.613281 10C0.613281 10 0.613281 5.35161 1.20683 3.12258C1.36732 2.51866 1.68361 1.96749 2.12405 1.52422C2.56449 1.08095 3.11363 0.76113 3.71651 0.596774C5.93586 0 14.8068 0 14.8068 0C14.8068 0 23.6778 0 25.8972 0.596774C26.5 0.76113 27.0492 1.08095 27.4896 1.52422ZM19.3229 10L11.9036 5.77905V14.221L19.3229 10Z"
-            />
-          </svg>
+          <mat-icon svgIcon="youtube" style="color: var(--medium-gray);"></mat-icon>
         </a>
       </div>
     </div>
