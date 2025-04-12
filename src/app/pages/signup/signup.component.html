@@ -48,24 +48,6 @@
     max-width: 300px;
   }
 
-  .form-group input {
-    padding: 0.75rem;
-    border: none;
-    border-radius: 2.75rem;
-    background-color: var(--blue-gray);
-    color: var(--light-gray);
-    font-size: 1rem;
-  }
-
-  .form-group input::placeholder {
-    color: var(--medium-gray);
-  }
-
-  .form-group input:focus {
-    outline: none;
-    border: 1px solid var(--orange);
-  }
-
   .button-group {
     display: flex;
     flex-direction: column;
@@ -94,16 +76,36 @@
 <main class="main">
   <div class="content">
     <div class="form-group">
-      <input type="text" placeholder="Felhasználónév" />
-      <input type="email" placeholder="Email cím" />
-      <input type="text" placeholder="Lakcím" />
-      <input type="password" placeholder="Jelszó" />
-      <input type="password" placeholder="Jelszó megerősítése" />
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Felhasználónév</mat-label>
+        <input matInput type="text" placeholder="Felhasználónév" />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email cím</mat-label>
+        <mat-icon matPrefix>email</mat-icon>
+        <input matInput type="email" placeholder="Email cím" />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Lakcím</mat-label>
+        <input matInput type="text" placeholder="Lakcím" />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Jelszó</mat-label>
+        <input matInput type="password" placeholder="Jelszó" />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Jelszó megerősítése</mat-label>
+        <input matInput type="password" placeholder="Jelszó megerősítése" />
+      </mat-form-field>
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>
     <div class="button-group">
-      <a href="/signup">Regisztráció</a>
-      <a href="/login">Már van fiókom</a>
+      <button mat-raised-button color="primary" style="background-color: var(--blue-gray); color: var(--light-gray);">
+        Regisztráció
+      </button>
+      <button mat-raised-button color="primary" [routerLink]="'/login'" style="background-color: var(--blue-gray); color: var(--light-gray);">
+        Már van fiókom
+      </button>
     </div>
   </div>
 </main>
