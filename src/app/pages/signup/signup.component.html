@@ -99,10 +99,18 @@
         </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Lakcím</mat-label>
-        <input matInput type="text" formControlName="address" placeholder="Lakcím" />
+        <mat-label>Utca és házszám</mat-label>
+        <input matInput type="text" formControlName="address" placeholder="Utca és házszám" />
         <mat-error *ngIf="signupForm.get('address')?.invalid && signupForm.get('address')?.touched">
-          A lakcím megadása kötelező!
+          Az utca és házszám megadása kötelező!
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Irányítószám</mat-label>
+        <input matInput type="number" formControlName="zipCode" placeholder="Irányítószám" />
+        <!-- <mat-hint align="end">Max. 4 számjegy</mat-hint> -->
+        <mat-error *ngIf="signupForm.get('zipCode')?.invalid && signupForm.get('zipCode')?.touched">
+          Érvénytelen irányítószám
         </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline" class="full-width">
