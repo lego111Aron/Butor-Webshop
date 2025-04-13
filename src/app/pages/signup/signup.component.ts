@@ -9,6 +9,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { AddressFormatterPipe } from '../../shared/pipes/address.pipe';
+import { User } from '../../shared/models/User';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -31,7 +34,12 @@ export class SignupComponent {
   signupForm: FormGroup;
   loading = false;
 
-  constructor(private fb: FormBuilder) {
+  // User típusú változó
+  user: User | null = null;
+
+  formattedAddress: string = '';
+
+  constructor(private fb: FormBuilder, private router: Router) {
     this.signupForm = this.fb.group({
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -44,12 +52,52 @@ export class SignupComponent {
 
   onSubmit(): void {
     if (this.signupForm.valid) {
-      this.loading = true;
-      setTimeout(() => {
-        this.loading = false;
-        const { username, email, address, zipCode, password, confirmPassword } = this.signupForm.value;
-        console.log('Regisztrációs adatok:', { username, email, address, zipCode, password, confirmPassword });
-      }, 3000);
+      const password = this.signupForm.value.password;
+      const confirmPassword = this.signupForm.value.confirmPassword;
+  
+      // Jelszó ellenőrzés switch-case szerkezettel
+      switch (true) {
+        case password !== confirmPassword:
+          alert('A jelszavak nem egyeznek meg!');
+          return;
+  
+        case !/(?=.*[a-zA-Z])(?=.*\d)/.test(password):
+          alert('A jelszónak tartalmaznia kell legalább egy betűt és egy számot!');
+          return;
+  
+        default:
+          this.loading = true;
+  
+          // A form értékeinek átmásolása a user változóba
+          this.user = {
+            userId: Date.now(), // Ideiglenes azonosító
+            name: this.signupForm.value.username,
+            streetAndHouseNumber: this.signupForm.value.address,
+            email: this.signupForm.value.email,
+            zipCode: +this.signupForm.value.zipCode,
+            password: password,
+            userRole: 'felhasználó', // Alapértelmezett szerepkör
+            shoppingCart: [],
+            purchaseHistory: []
+          };
+  
+          // Lakcím formázása
+          this.formatAddress();
+  
+          setTimeout(() => {
+            this.loading = false;
+            console.log('Regisztrációs adatok:', this.user);
+            this.router.navigate(['/login']); // Navigáció a bejelentkezési oldalra
+          }, 3000);
+      }
+    }
+  }
+
+  formatAddress(): void {
+    if (this.user) {
+      const pipe = new AddressFormatterPipe();
+      this.formattedAddress = pipe.transform(this.user.streetAndHouseNumber);
+      console.log('Formázott lakcím:', this.formattedAddress);
     }
   }
 }

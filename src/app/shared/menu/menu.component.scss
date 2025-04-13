@@ -9,7 +9,7 @@ a {
 
 a:hover {
     background-color: var(--blue-gray); /* Hover háttérszín */
-    color: var(--orange); /* Hover szöveg szín */
+    color: var(--cyan); /* Hover szöveg szín */
 }
 
 .mdc-list-item:focus::before {
@@ -18,7 +18,7 @@ a:hover {
 
 .active-list-item {
     background-color: var(--blue-gray); /* Aktív elem háttérszíne */
-    color: var(--orange); /* Aktív elem szöveg színe */
+    color: var(--cyan); /* Aktív elem szöveg színe */
     font-weight: bold;
 }
 
@@ -35,6 +35,6 @@ mat-icon {
 }
 
 mat-icon:hover {
-    color: var(--orange); /* Ikon hover színe */
+    color: var(--cyan); /* Ikon hover színe */
 }
 

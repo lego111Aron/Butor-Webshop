@@ -1,13 +1,13 @@
 :host {
   --gradient-vertical: linear-gradient(
     180deg,
-    var(--orange) 0%,
+    var(--cyan) 0%,
     var(--blue-gray) 100%
   );
 
   --gradient-horizontal: linear-gradient(
     90deg,
-    var(--orange) 0%,
+    var(--cyan) 0%,
     var(--blue-gray) 100%
   );
 
@@ -70,12 +70,12 @@ main {
 
 button[mat-raised-button] {
   background-color: var(--dark-gray);
-  color: var(--orange);
+  color: var(--cyan);
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 button[mat-raised-button]:hover {
-  background-color: var(--orange); /* Hover állapotban narancssárga */
+  background-color: var(--cyan); /* Hover állapotban narancssárga */
   color: var(--dark-gray); /* Szöveg színe változatlan */
 }
   
@@ -93,7 +93,7 @@ button[mat-raised-button]:hover {
 }
 
 .avatar {
-  background-color: var(--orange); /* vagy egyéni szín */
+  background-color: var(--cyan); /* vagy egyéni szín */
   color: var(--dark-gray);
   border-radius: 50%;
   width: 40px;
@@ -118,7 +118,7 @@ button[mat-raised-button]:hover {
   margin-top: 5px;
   font-size: 1.25rem; /* Nagyobb cím betűméret */
   // font-weight: bold;
-  // color: var(--orange); /* Cím színe */
+  // color: var(--cyan); /* Cím színe */
 }
 
 .left-side mat-card-content p {
@@ -127,7 +127,7 @@ button[mat-raised-button]:hover {
 }
 
 .avatar {
-  background-color: var(--orange); /* Avatar háttérszíne */
+  background-color: var(--cyan); /* Avatar háttérszíne */
   color: var(--dark-gray); /* Avatar szöveg színe */
   font-size: 1.5rem; /* Nagyobb betűméret az avatarban */
   width: 50px; /* Nagyobb méret */
@@ -145,7 +145,7 @@ button[mat-raised-button]:hover {
 }
 
 .username {
-  color: var(--orange);
+  color: var(--cyan);
 }
 
 .right-side mat-card {
@@ -160,7 +160,7 @@ button[mat-raised-button]:hover {
 .right-side mat-card-title {
   font-size: 1.25rem;
   // font-weight: bold;
-  color: var(--orange);
+  color: var(--cyan);
 }
 
 .right-side .total {

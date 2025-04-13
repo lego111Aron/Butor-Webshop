@@ -20,7 +20,7 @@ a {
     transition: color 0.3s ease;
 
     &:hover {
-        color: var(--orange); /* Hover szín */
+        color: var(--cyan); /* Hover szín */
     }
 }
 
@@ -38,7 +38,7 @@ mat-toolbar {
         transition: color 0.3s ease;
 
         &:hover {
-            color: var(--orange); /* Ikon hover színe */
+            color: var(--cyan); /* Ikon hover színe */
         }
     }
 }
@@ -93,5 +93,5 @@ mat-sidenav {
 
 .dropdown-menu a:hover {
     background-color: var(--blue-gray);
-    color: var(--orange);
+    color: var(--cyan);
 }

@@ -25,7 +25,7 @@ import { MatButtonModule } from '@angular/material/button';
 export class ProfileComponent {
   user: User = {
     userId: 1,
-    name: 'John Doe',
+    name: 'test',
     streetAndHouseNumber: 'Test út, 395',
     email: 'test@test.com',
     zipCode: 1000,
@@ -52,9 +52,9 @@ export class ProfileComponent {
   }
 
   shoppingCart: ShoppingCart[] = [
-    { itemId: 1, itemName: 'Asztal', price: 50000 },
-    { itemId: 2, itemName: 'Szék', price: 15000 },
-    { itemId: 3, itemName: 'Kanapé', price: 120000 }
+    { itemId: 1, itemName: 'Asztal', price: 50000, quantity: 1 },
+    { itemId: 2, itemName: 'Szék', price: 15000, quantity: 1 },
+    { itemId: 3, itemName: 'Kanapé', price: 120000, quantity: 1 }
   ];
 
   getTotalPrice(): number {
