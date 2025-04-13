@@ -1,0 +1,57 @@
+/* filepath: c:\Egyetem\Webfejlesztesi keretrendszerek\Projekt\Butor-Webshop\src\app\pages\products\products.component.scss */
+:host {
+  display: block;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Segoe UI Symbol";
+  box-sizing: border-box;
+  height: 100%; /* A :host magasságának beállítása */
+}
+
+html, body {
+  height: 100%; /* Az oldal teljes magasságának biztosítása */
+  margin: 0; /* Margin eltávolítása */
+}
+
+.main {
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--dark-gray);
+  box-sizing: border-box;
+}
+
+.content {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.product-card {
+  background: var(--blue-gray);
+  color: var(--light-gray);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.product-card mat-card-title {
+  font-size: 1.25rem;
+  color: var(--cyan);
+}
+
+.product-card mat-card-subtitle {
+  font-size: 1rem;
+  color: var(--medium-gray);
+}
+
+.product-card img {
+  border-radius: 8px;
+}
+
+.product-card mat-card-actions {
+  display: flex;
+  justify-content: space-between;
+}
