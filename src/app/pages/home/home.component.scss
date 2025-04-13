@@ -1,13 +1,13 @@
 :host {
   --gradient-vertical: linear-gradient(
     180deg,
-    var(--orange) 0%,
+    var(--cyan) 0%,
     var(--blue-gray) 100%
   );
 
   --gradient-horizontal: linear-gradient(
     90deg,
-    var(--orange) 0%,
+    var(--cyan) 0%,
     var(--blue-gray) 100%
   );
 
@@ -60,7 +60,7 @@ button[mat-raised-button] {
 }
 
 button[mat-raised-button]:hover {
-  background-color: var(--orange); /* Hover állapotban narancssárga */
+  background-color: var(--cyan); /* Hover állapotban narancssárga */
   color: var(--light-gray); /* Szöveg színe változatlan */
 }
 
@@ -76,5 +76,5 @@ button[mat-raised-button]:hover {
 }
 
 .social-links a:hover mat-icon {
-  color: var(--orange);
+  color: var(--cyan);
 }
