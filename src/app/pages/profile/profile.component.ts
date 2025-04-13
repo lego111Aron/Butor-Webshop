@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 import { ShoppingCart } from '../../shared/models/ShoppingCart';
 import { PurchaseHistory } from '../../shared/models/PurchaseHistory';
 import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-profile',
@@ -14,6 +15,7 @@ import { MatListModule } from '@angular/material/list';
   imports: [
     CommonModule,
     MatListModule,
+    MatButtonModule,
     MatDividerModule,
     MatCardModule // <== Fontos!
   ],
@@ -83,6 +85,23 @@ export class ProfileComponent {
       itemName: 'Szék',
       purchasePrice: 15000,
       purchaseDate: new Date('2023-02-20')
+    },
+    {
+      itemId: 3,
+      itemName: 'Kanapé',
+      purchasePrice: 120000,
+      purchaseDate: new Date('2023-03-10')
     }
   ];
+
+  onPurchase(): void {
+    if (this.shoppingCart.length === 0) {
+      alert('A kosár üres! Kérjük, adjon hozzá termékeket.');
+      return;
+    }
+  
+    // Vásárlási logika (pl. adatok mentése, kosár ürítése)
+    alert('Köszönjük a vásárlást!');
+    this.clearCart(); // Kosár ürítése
+  }
 }

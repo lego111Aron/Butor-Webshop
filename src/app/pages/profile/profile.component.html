@@ -49,14 +49,26 @@
             <div class="total">
               <strong>Összesen:</strong> {{ getTotalPrice() | currency:'HUF' }}
             </div>
+            <button mat-raised-button color="primary" class="purchase-button" (click)="onPurchase()">
+              Vásárlás
+            </button>
           </mat-card-content>
         </mat-card>
+        
+        <mat-divider style="margin-bottom: 1rem;"></mat-divider>
 
-        <mat-divider></mat-divider>
-
-        <p>jobb oldal</p>
-        <p>jobb oldal</p>
-        <p>jobb oldal</p>
+        <mat-card>
+          <mat-card-title>Vásárlási előzmények</mat-card-title>
+          <mat-card-content>
+            <mat-list>
+              <mat-list-item *ngFor="let history of purchaseHistory">
+                <div mat-line>{{ history.itemName }}</div>
+                <div mat-line>{{ history.purchasePrice | currency:'HUF' }}</div>
+                <div mat-line>{{ history.purchaseDate | date:'yyyy-MM-dd' }}</div>
+              </mat-list-item>
+            </mat-list>
+          </mat-card-content>
+        </mat-card>
       </div>
     </div>
   </main>

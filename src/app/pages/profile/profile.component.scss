@@ -1,83 +1,83 @@
 :host {
-    --gradient-vertical: linear-gradient(
-      180deg,
-      var(--orange) 0%,
-      var(--blue-gray) 100%
-    );
-  
-    --gradient-horizontal: linear-gradient(
-      90deg,
-      var(--orange) 0%,
-      var(--blue-gray) 100%
-    );
-  
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-      Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-      "Segoe UI Symbol";
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  --gradient-vertical: linear-gradient(
+    180deg,
+    var(--orange) 0%,
+    var(--blue-gray) 100%
+  );
+
+  --gradient-horizontal: linear-gradient(
+    90deg,
+    var(--orange) 0%,
+    var(--blue-gray) 100%
+  );
+
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+main {
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  box-sizing: inherit;
+  position: relative;
+  background-color: var(--dark-gray);
+}
+
+.content {
+  width: 800px; // FIXME: ezt a sort lehet ki kell venni
+  display: flex;
+  flex-direction: row; /* Alapértelmezett: egymás mellett */
+  gap: 1rem;
+
+  .left-side,
+  .right-side {
+    flex: 1; /* Egyenlő szélesség */
   }
-  
-  main {
-    width: 100%;
-    min-height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-    box-sizing: inherit;
-    position: relative;
-    background-color: var(--dark-gray);
-  }
-  
+}
+
+@media (max-width: 768px) {
   .content {
-    width: 800px; // FIXME: ezt a sort lehet ki kell venni
-    display: flex;
-    flex-direction: row; /* Alapértelmezett: egymás mellett */
-    gap: 1rem;
-  
-    .left-side,
-    .right-side {
-      flex: 1; /* Egyenlő szélesség */
-    }
+    flex-direction: column; /* Kis képernyőn egymás alá kerülnek */
   }
-  
-  @media (max-width: 768px) {
-    .content {
-      flex-direction: column; /* Kis képernyőn egymás alá kerülnek */
-    }
-  
-    .left-side,
-    .right-side {
-      width: 100%; /* Teljes szélesség */
-    }
+
+  .left-side,
+  .right-side {
+    width: 100%; /* Teljes szélesség */
   }
-  
-  .divider {
-    width: 1px;
-    background: var(--gradient-vertical);
-    margin-inline: 0.5rem;
-  }
-  
-  .pill-group {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    flex-wrap: wrap;
-    gap: 1.25rem;
-  }
-  
-  button[mat-raised-button] {
-    background-color: var(--blue-gray);
-    color: var(--light-gray);
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-  
-  button[mat-raised-button]:hover {
-    background-color: var(--orange); /* Hover állapotban narancssárga */
-    color: var(--light-gray); /* Szöveg színe változatlan */
-  }
+}
+
+.divider {
+  width: 1px;
+  background: var(--gradient-vertical);
+  margin-inline: 0.5rem;
+}
+
+.pill-group {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+button[mat-raised-button] {
+  background-color: var(--dark-gray);
+  color: var(--orange);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+button[mat-raised-button]:hover {
+  background-color: var(--orange); /* Hover állapotban narancssárga */
+  color: var(--dark-gray); /* Szöveg színe változatlan */
+}
   
 .profile-container {
   display: flex;
@@ -167,4 +167,29 @@
   margin-top: 1rem;
   font-size: 1.1rem;
   text-align: right;
+}
+
+.right-side mat-list-item {
+  display: flex;
+  // flex-direction: column; /* A szövegek egymás alá kerülnek */
+  align-items: flex-start; /* Balra igazítás */
+  margin-bottom: 1rem; /* Távolság az elemek között */
+  height: auto;
+}
+
+.right-side mat-list-item div[mat-line] {
+  font-size: 1rem; /* Szöveg mérete */
+  line-height: 1.5; /* Sorok közötti távolság */
+  color: var(--light-gray); /* Szöveg színe */
+}
+
+.right-side mat-list-item:last-child {
+  margin-bottom: 0; /* Az utolsó elem alatt ne legyen extra margó */
+}
+
+.purchase-button {
+  margin-top: 1rem;
+  width: 100%;
+  font-weight: bold;
+  text-transform: uppercase; /* Nagybetűs szöveg */
 }
