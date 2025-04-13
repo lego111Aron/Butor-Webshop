@@ -76,3 +76,59 @@
 .right-panel {
   flex: 1; /* Egyenlő szélességű panelek */
 }
+
+.avatar {
+  background-color: var(--orange); /* vagy egyéni szín */
+  color: var(--dark-gray);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.left-side mat-card {
+  margin-bottom: 1.5rem; /* Kártyák közötti távolság */
+  background: var(--blue-gray); /* Kártya háttérszíne */
+  color: var(--light-gray); /* Szöveg színe */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Árnyék */
+  border-radius: 8px; /* Lekerekített sarkok */
+  padding: 1rem;
+}
+
+.left-side mat-card-title {
+  font-size: 1.25rem; /* Nagyobb cím betűméret */
+  // font-weight: bold;
+  // color: var(--orange); /* Cím színe */
+}
+
+.left-side mat-card-content p {
+  font-size: 1rem; /* Szöveg betűmérete */
+  margin: 0.5rem 0;
+}
+
+.avatar {
+  background-color: var(--orange); /* Avatar háttérszíne */
+  color: var(--dark-gray); /* Avatar szöveg színe */
+  font-size: 1.5rem; /* Nagyobb betűméret az avatarban */
+  width: 50px; /* Nagyobb méret */
+  height: 50px;
+}
+
+.divider {
+  background: var(--gradient-vertical); /* Elválasztó vonal színe */
+  height: auto;
+}
+
+.right-side p {
+  color: var(--medium-gray); /* Jobb oldali szöveg színe */
+  font-size: 0.95rem;
+}
+
+.username {
+  color: var(--orange);
+}
+

@@ -1,11 +1,34 @@
 <main class="main">
     <div class="content">
       <div class="left-side">
-        <p>bal oldal</p>
-        <p>bal oldal</p>
-        <p>bal oldal</p>
-        <p>bal oldal</p>
-        <p>bal oldal</p>
+        <mat-card>
+          <mat-card-header>
+            <div mat-card-avatar class="avatar">{{ usernameInitial }}</div>
+            <mat-card-title class="username">{{ username }}</mat-card-title>
+            <mat-card-subtitle>Bejelentkezett felhasználó</mat-card-subtitle>
+          </mat-card-header>
+          <!-- <mat-card-content>
+            <p>Üdvözlünk, {{ username }}!</p>
+          </mat-card-content> -->
+        </mat-card>
+
+        <mat-card>
+          <mat-card-title>Email</mat-card-title>
+          <mat-card-content>
+            <p>Email megjelenítése</p>
+          </mat-card-content>
+
+          <mat-card-title>Utca és házszám</mat-card-title>
+          <mat-card-content>
+            <p>Utca és házszám megjelenítése</p>
+          </mat-card-content>
+
+          <mat-card-title>Irányítószám</mat-card-title>
+          <mat-card-content>
+            <p>Irányítószám megjelenítése</p>
+          </mat-card-content>
+        </mat-card>
+
       </div>
 
       <div class="divider" role="separator" aria-label="Divider"></div>
@@ -13,6 +36,10 @@
       <div class="right-side">
         <p>jobb oldal</p>
         <p>jobb oldal</p>
+        <p>jobb oldal</p>
+
+        <mat-divider></mat-divider>
+
         <p>jobb oldal</p>
         <p>jobb oldal</p>
         <p>jobb oldal</p>
