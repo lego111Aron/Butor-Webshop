@@ -63,15 +63,15 @@ export class ProductsComponent implements AfterViewInit {
     this.router.navigate(['/profile']);
   }
 
-  pageSize = 3; // Oldalankénti termékek száma
-  pageSizeOptions = [3, 5, 10]; // Választható opciók a lapmérethez
-  pagedProducts: Products[] = []; // Lapozott termékek
+  pageSize = 3;
+  pageSizeOptions = [3, 5, 10];
+  pagedProducts: Products[] = [];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngAfterViewInit(): void {
     setTimeout(() => {
-      this.updatePagedProducts(); // Az első frissítés az oldal betöltése után
-      this.paginator.page.subscribe(() => this.updatePagedProducts()); // Lapozás figyelése
+      this.updatePagedProducts();
+      this.paginator.page.subscribe(() => this.updatePagedProducts());
     });
   }
 
