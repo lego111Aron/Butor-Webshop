@@ -32,11 +32,26 @@
   }
   
   .content {
+    width: 800px; // FIXME: ezt a sort lehet ki kell venni
     display: flex;
-    justify-content: space-around;
-    width: 100%;
-    max-width: 700px;
-    margin-bottom: 3rem;
+    flex-direction: row; /* Alapértelmezett: egymás mellett */
+    gap: 1rem;
+  
+    .left-side,
+    .right-side {
+      flex: 1; /* Egyenlő szélesség */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .content {
+      flex-direction: column; /* Kis képernyőn egymás alá kerülnek */
+    }
+  
+    .left-side,
+    .right-side {
+      width: 100%; /* Teljes szélesség */
+    }
   }
   
   .divider {
@@ -133,3 +148,23 @@
   color: var(--orange);
 }
 
+.right-side mat-card {
+  margin-bottom: 1rem;
+  background-color: var(--blue-gray);
+  color: var(--light-gray);
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.right-side mat-card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--orange);
+}
+
+.right-side .total {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  text-align: right;
+}

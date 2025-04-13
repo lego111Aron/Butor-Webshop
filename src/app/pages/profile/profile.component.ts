@@ -2,12 +2,18 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCardModule } from '@angular/material/card'; // <== MatCard hozzáadása
+import { User } from '../../shared/models/User';
+import { Injectable } from '@angular/core';
+import { ShoppingCart } from '../../shared/models/ShoppingCart';
+import { PurchaseHistory } from '../../shared/models/PurchaseHistory';
+import { MatListModule } from '@angular/material/list';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
   imports: [
     CommonModule,
+    MatListModule,
     MatDividerModule,
     MatCardModule // <== Fontos!
   ],
@@ -15,15 +21,24 @@ import { MatCardModule } from '@angular/material/card'; // <== MatCard hozzáad�
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent {
-  username: string = 'test';
-  userRole: string = 'felhasználó';
+  user: User = {
+    userId: 1,
+    name: 'John Doe',
+    streetAndHouseNumber: 'Test út, 395',
+    email: 'test@test.com',
+    zipCode: 1000,
+    password: 'test',
+    userRole: 'felhasználó',
+    shoppingCart: [],
+    purchaseHistory: []
+  };
 
   get usernameInitial(): string {
-    return this.username.charAt(0).toUpperCase();
+    return this.user.name.charAt(0).toUpperCase();
   }
 
   getUserRoleText(): string {
-    switch (this.userRole) {
+    switch (this.user.userRole) {
       case 'admin':
         return 'Ez egy admin profil';
       case undefined:
@@ -33,4 +48,41 @@ export class ProfileComponent {
         return 'Bejelentkezett felhasználó';
     }
   }
+
+  shoppingCart: ShoppingCart[] = [
+    { itemId: 1, itemName: 'Asztal', price: 50000 },
+    { itemId: 2, itemName: 'Szék', price: 15000 },
+    { itemId: 3, itemName: 'Kanapé', price: 120000 }
+  ];
+
+  getTotalPrice(): number {
+    return this.shoppingCart.reduce((total, item) => total + item.price, 0);
+  }
+
+  addToCart(item: ShoppingCart): void {
+    this.shoppingCart.push(item);
+  }
+
+  getCartItems(): ShoppingCart[] {
+    return this.shoppingCart;
+  }
+
+  clearCart(): void {
+    this.shoppingCart = [];
+  }
+
+  purchaseHistory: PurchaseHistory[] = [
+    {
+      itemId: 1,
+      itemName: 'Asztal',
+      purchasePrice: 50000,
+      purchaseDate: new Date('2023-01-15')
+    },
+    {
+      itemId: 2,
+      itemName: 'Szék',
+      purchasePrice: 15000,
+      purchaseDate: new Date('2023-02-20')
+    }
+  ];
 }
