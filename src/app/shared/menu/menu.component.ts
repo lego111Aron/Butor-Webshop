@@ -28,6 +28,7 @@ export class MenuComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     console.log("ngOnInit called");
+    this.isLoggedIn = localStorage.getItem('isLoggedIn') === 'true'; // Bejelentkezési állapot betöltése
   }
 
   ngAfterViewInit(): void {
@@ -41,8 +42,8 @@ export class MenuComponent implements OnInit, AfterViewInit {
   }
 
   logout() {
-    localStorage.setItem('isLoggedIn', 'false');
-    window.location.href = '/home';
+    localStorage.removeItem('isLoggedIn'); // Bejelentkezési állapot törlése
+    window.location.href = '/home'; // Átirányítás a főoldalra
     this.closeMenu();
   }
 }

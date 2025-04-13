@@ -15,7 +15,7 @@ import { MatCardModule } from '@angular/material/card'; // <== MatCard hozzáad�
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent {
-  username: string = 'Béla Kovács';
+  username: string = 'test';
 
   get usernameInitial(): string {
     return this.username.charAt(0).toUpperCase();

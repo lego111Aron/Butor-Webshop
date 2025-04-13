@@ -13,10 +13,39 @@
       <div><a routerLink="/home">Bútor webshop</a></div>
       <nav>
         <ul>
-          <li><a routerLink="/home">Home</a></li>
-          <li><a routerLink="/profile">Profile</a></li>
-          <li><a routerLink="/login">Bejelentkezés</a></li>
-          <li><a routerLink="/signup">Regisztráció</a></li>
+          <!-- <li><a routerLink="/home">Home</a></li> -->
+          <li>
+            @if (isLoggedIn) {
+              <a mat-list-item routerLink="/profile">
+                <!-- <mat-icon matListItemIcon>person</mat-icon> -->
+                <span matListItemTitle>Profile</span>
+              </a>
+            }
+          </li>
+          <li>
+            @if (!isLoggedIn) {
+              <a mat-list-item routerLink="/login">
+                <!-- <mat-icon matListItemIcon>login</mat-icon> -->
+                <span matListItemTitle>Bejelentkezés</span>
+              </a>
+            }
+          </li>          
+          <li>
+            @if (!isLoggedIn) {
+              <a mat-list-item routerLink="/signup">
+                <!-- <mat-icon matListItemIcon>assignment</mat-icon> -->
+                <span matListItemTitle>Regisztráció</span>
+              </a>
+            }
+          </li>        
+          <li>
+            @if (isLoggedIn) {
+              <a mat-list-item (click)="logout()">
+                <!-- <mat-icon matListItemIcon>logout</mat-icon> -->
+                <span matListItemTitle>Logout</span>
+              </a>
+            }
+          </li>      
         </ul>
       </nav>
     </mat-toolbar>

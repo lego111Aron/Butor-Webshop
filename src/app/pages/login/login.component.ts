@@ -38,12 +38,22 @@ export class LoginComponent {
 
   onSubmit(): void {
     if (this.loginForm.valid) {
-      this.loading = true; // Töltőképernyő megjelenítése
-      setTimeout(() => {
-        this.loading = false; // Töltőképernyő elrejtése 3 másodperc után
-        const { username, password } = this.loginForm.value;
-        console.log('Bejelentkezési adatok:', { username, password });
-      }, 3000);
+      const { username, password } = this.loginForm.value;
+  
+      // Statikus bejelentkezési adatok
+      const validUsername = 'test';
+      const validPassword = 'test';
+  
+      if (username === validUsername && password === validPassword) {
+        this.loading = true; // Töltőképernyő megjelenítése
+        setTimeout(() => {
+          this.loading = false; // Töltőképernyő elrejtése
+          localStorage.setItem('isLoggedIn', 'true'); // Bejelentkezés állapot mentése
+          window.location.href = '/home'; // Átirányítás a főoldalra
+        }, 1000);
+      } else {
+        alert('Hibás felhasználónév vagy jelszó!');
+      }
     }
   }
 }
