@@ -23,55 +23,11 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent {
-  user: User = {
-    userId: 1,
-    name: 'test',
-    streetAndHouseNumber: 'Test út, 395',
-    email: 'test@test.com',
-    zipCode: 1000,
-    password: 'test',
-    userRole: 'felhasználó',
-    shoppingCart: [],
-    purchaseHistory: []
-  };
-
-  get usernameInitial(): string {
-    return this.user.name.charAt(0).toUpperCase();
-  }
-
-  getUserRoleText(): string {
-    switch (this.user.userRole) {
-      case 'admin':
-        return 'Ez egy admin profil';
-      case undefined:
-      case null:
-        return 'Hiányzó jogosultság';
-      default:
-        return 'Bejelentkezett felhasználó';
-    }
-  }
-
   shoppingCart: ShoppingCart[] = [
     { itemId: 1, itemName: 'Asztal', price: 50000, quantity: 1 },
     { itemId: 2, itemName: 'Szék', price: 15000, quantity: 1 },
     { itemId: 3, itemName: 'Kanapé', price: 120000, quantity: 1 }
   ];
-
-  getTotalPrice(): number {
-    return this.shoppingCart.reduce((total, item) => total + item.price, 0);
-  }
-
-  addToCart(item: ShoppingCart): void {
-    this.shoppingCart.push(item);
-  }
-
-  getCartItems(): ShoppingCart[] {
-    return this.shoppingCart;
-  }
-
-  clearCart(): void {
-    this.shoppingCart = [];
-  }
 
   purchaseHistory: PurchaseHistory[] = [
     {
@@ -93,6 +49,50 @@ export class ProfileComponent {
       purchaseDate: new Date('2023-03-10')
     }
   ];
+
+  user: User = {
+    userId: 1,
+    name: 'test',
+    streetAndHouseNumber: 'Test út, 395',
+    email: 'test@test.com',
+    zipCode: 1000,
+    password: 'test',
+    userRole: 'felhasználó',
+    shoppingCart: this.shoppingCart,
+    purchaseHistory: this.purchaseHistory
+  };
+
+  get usernameInitial(): string {
+    return this.user.name.charAt(0).toUpperCase();
+  }
+
+  getUserRoleText(): string {
+    switch (this.user.userRole) {
+      case 'admin':
+        return 'Ez egy admin profil';
+      case undefined:
+      case null:
+        return 'Hiányzó jogosultság';
+      default:
+        return 'Bejelentkezett felhasználó';
+    }
+  }
+
+  getTotalPrice(): number {
+    return this.shoppingCart.reduce((total, item) => total + item.price, 0);
+  }
+
+  addToCart(item: ShoppingCart): void {
+    this.shoppingCart.push(item);
+  }
+
+  getCartItems(): ShoppingCart[] {
+    return this.shoppingCart;
+  }
+
+  clearCart(): void {
+    this.shoppingCart = [];
+  }
 
   onPurchase(): void {
     if (this.shoppingCart.length === 0) {
