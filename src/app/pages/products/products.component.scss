@@ -54,3 +54,33 @@ html, body {
   display: flex;
   justify-content: space-between;
 }
+
+/* Új stílus a mat-paginator elemhez */
+mat-paginator {
+  background-color: var(--blue-gray);
+  color: var(--light-gray);
+  border-radius: 8px;
+  padding: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+mat-paginator .mat-paginator-range-label {
+  color: var(--medium-gray);
+}
+
+mat-paginator .mat-paginator-navigation-button {
+  color: var(--cyan);
+}
+
+mat-paginator .mat-paginator-navigation-button:hover {
+  background-color: rgba(0, 255, 255, 0.1);
+  border-radius: 50%;
+}
+
+mat-paginator .mat-paginator-page-size {
+  color: var(--light-gray);
+}
+
+mat-paginator .mat-select-value {
+  color: var(--light-gray);
+}

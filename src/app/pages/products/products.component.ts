@@ -1,18 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { Router } from '@angular/router'; // Router importálása
+import { Router } from '@angular/router';
 import { Products } from '../../shared/models/Products';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatButtonModule],
+  imports: [CommonModule, MatCardModule, MatButtonModule, MatPaginatorModule],
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent {
+export class ProductsComponent implements AfterViewInit {
   products: Products[] = [
     {
       productId: 1,
@@ -56,9 +57,27 @@ export class ProductsComponent {
     }
   ];
 
-  constructor(private router: Router) {} // Router injektálása
+  constructor(private router: Router) {}
 
   navigateToProfile(): void {
-    this.router.navigate(['/profile']); // Navigáció a profil oldalra
+    this.router.navigate(['/profile']);
+  }
+
+  pageSize = 3;
+  pageSizeOptions = [3, 5, 10];
+  pagedProducts: Products[] = [];
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.updatePagedProducts();
+      this.paginator.page.subscribe(() => this.updatePagedProducts());
+    });
+  }
+
+  updatePagedProducts(): void {
+    const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
+    const endIndex = startIndex + this.paginator.pageSize;
+    this.pagedProducts = this.products.slice(startIndex, endIndex);
   }
 }
