@@ -1,1 +1,53 @@
-<p>home works!</p>
+<main class="main">
+  <div class="content">
+    <div class="left-side">
+      <h1>Bútor webshop</h1>
+      <p style="color: var(--medium-gray);">
+        Nézelődj kedvedre és fedezd fel hatalmas kínálatunk.
+      </p>
+    </div>
+    <div class="divider" role="separator" aria-label="Divider"></div>
+    <div class="right-side">
+      <div class="pill-group">
+        <button mat-raised-button color="primary" [routerLink]="'/login'" style="background-color: var(--blue-gray); color: var(--light-gray);">
+          Bejelentkezés
+        </button>
+        <button mat-raised-button color="primary" [routerLink]="'/signup'" style="background-color: var(--blue-gray); color: var(--light-gray);">
+          Regisztráció
+        </button>
+        <button mat-raised-button color="primary" [routerLink]="'/nincskesz'" style="background-color: var(--blue-gray); color: var(--light-gray);">
+          Termékek
+        </button>
+      </div>
+      <div class="social-links">
+        <a
+          href="https://github.com/lego111Aron/Butor-Webshop/tree/main"
+          aria-label="Github"
+          target="_blank"
+          rel="noopener"
+        >
+          <button mat-button>
+            <mat-icon svgIcon="github"></mat-icon>
+            GitHub
+          </button>
+        </a>
+        <!-- <a
+          href="https://twitter.com/angular"
+          aria-label="Twitter"
+          target="_blank"
+          rel="noopener"
+        >
+          <mat-icon svgIcon="twitter" style="color: var(--medium-gray);"></mat-icon>
+        </a>
+        <a
+          href="https://www.youtube.com/channel/UCbn1OgGei-DV7aSRo_HaAiw"
+          aria-label="Youtube"
+          target="_blank"
+          rel="noopener"
+        >
+          <mat-icon svgIcon="youtube" style="color: var(--medium-gray);"></mat-icon>
+        </a> -->
+      </div>
+    </div>
+  </div>
+</main>

@@ -1,5 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { Routes } from '@angular/router';
+import { AuthGuard } from './shared/auth.guard';
 
 describe('AppComponent', () => {
   beforeEach(async () => {

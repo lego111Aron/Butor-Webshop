@@ -1,11 +1,21 @@
 import { Component } from '@angular/core';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-page-not-found',
-  imports: [],
+  standalone: true,
+  imports: [
+    MatToolbarModule,
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule,
+    RouterModule
+  ],
   templateUrl: './page-not-found.component.html',
-  styleUrl: './page-not-found.component.scss'
+  styleUrls: ['./page-not-found.component.scss']
 })
-export class PageNotFoundComponent {
-
-}
+export class PageNotFoundComponent {}

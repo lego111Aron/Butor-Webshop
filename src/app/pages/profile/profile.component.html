@@ -1,1 +1,74 @@
-<p>profile works!</p>
+<main class="main">
+    <div class="content">
+      <div class="left-side">
+        <mat-card>
+          <mat-card-header>
+            <div mat-card-avatar class="avatar">{{ usernameInitial }}</div>
+            <mat-card-title class="username">{{ user.name }}</mat-card-title>
+            <mat-card-subtitle>
+              {{ getUserRoleText() }}
+            </mat-card-subtitle>
+          </mat-card-header>
+          <!-- <mat-card-content>
+            <p>Üdvözlünk, {{ username }}!</p>
+          </mat-card-content> -->
+        </mat-card>
+
+        <mat-card>
+          <mat-card-title>Email:</mat-card-title>
+          <mat-card-content>
+            <p>test&#64;test.com</p>
+          </mat-card-content>
+          
+          <mat-card-title>Utca és házszám:</mat-card-title>
+          <mat-card-content>
+            <p>test út, 395</p>
+          </mat-card-content>
+          
+          <mat-card-title>Irányítószám:</mat-card-title>
+          <mat-card-content>
+            <p>1000</p>
+          </mat-card-content>
+        </mat-card>
+
+      </div>
+
+      <div class="divider" role="separator" aria-label="Divider"></div>
+
+      <div class="right-side">
+        <mat-card>
+          <mat-card-title>Bevásárlókosár</mat-card-title>
+          <mat-card-content>
+            <mat-list>
+              <mat-list-item *ngFor="let item of shoppingCart">
+                <div mat-line>{{ item.itemName }}</div>
+                <div mat-line>{{ item.price | currency:'HUF' }}</div>
+              </mat-list-item>
+            </mat-list>
+            <mat-divider></mat-divider>
+            <div class="total">
+              <strong>Összesen:</strong> {{ getTotalPrice() | currency:'HUF' }}
+            </div>
+            <button mat-raised-button color="primary" class="purchase-button" (click)="onPurchase()">
+              Vásárlás
+            </button>
+          </mat-card-content>
+        </mat-card>
+        
+        <mat-divider style="margin-bottom: 1rem;"></mat-divider>
+
+        <mat-card>
+          <mat-card-title>Vásárlási előzmények</mat-card-title>
+          <mat-card-content>
+            <mat-list>
+              <mat-list-item *ngFor="let history of purchaseHistory">
+                <div mat-line>{{ history.itemName }}</div>
+                <div mat-line>{{ history.purchasePrice | currency:'HUF' }}</div>
+                <div mat-line>{{ history.purchaseDate | date:'yyyy-MM-dd' }}</div>
+              </mat-list-item>
+            </mat-list>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </main>

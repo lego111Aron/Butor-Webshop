@@ -1,0 +1,97 @@
+nav {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+ul {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    gap: 30px;
+}
+
+a {
+    text-decoration: none;
+    color: var(--light-gray); /* Szöveg színe */
+    font-size: 25px;
+    transition: color 0.3s ease;
+
+    &:hover {
+        color: var(--orange); /* Hover szín */
+    }
+}
+
+mat-sidenav-container {
+    height: 100%;
+}
+
+mat-toolbar {
+    background-color: var(--blue-gray); /* Toolbar háttérszín */
+    color: var(--light-gray); /* Toolbar szöveg színe */
+    transition: color 0.3s ease;
+
+    mat-icon {
+        color: var(--light-gray); /* Ikon színe */
+        transition: color 0.3s ease;
+
+        &:hover {
+            color: var(--orange); /* Ikon hover színe */
+        }
+    }
+}
+
+mat-sidenav {
+    border-radius: 0;
+    background-color: var(--dark-gray); /* Sidenav háttérszín */
+}
+
+.menu-toggle-button {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .menu-toggle-button {
+        display: block; /* Mobil nézetben megjelenik a menü gomb */
+    }
+    
+    nav ul {
+        display: none; /* Mobil nézetben rejtve van a menü */
+    }
+}
+
+@media (min-width: 769px) {
+    .menu-toggle-button {
+        display: none; /* Asztali nézetben rejtve marad a menü gomb */
+    }
+
+    nav ul {
+        display: flex; /* Asztali nézetben látható a menü */
+    }
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 64px; /* Toolbar magassága */
+    left: 0;
+    width: 100%;
+    background-color: var(--dark-gray); /* Menü háttérszíne */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown-menu a {
+    padding: 10px 20px;
+    text-decoration: none;
+    color: var(--light-gray);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dropdown-menu a:hover {
+    background-color: var(--blue-gray);
+    color: var(--orange);
+}

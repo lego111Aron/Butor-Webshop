@@ -1,1 +1,22 @@
-<p>page-not-found works!</p>
+<!-- <mat-toolbar color="primary" style="background-color: var(--blue-gray); color: var(--light-gray);">
+  <span>Hiba: Az oldal nem található</span>
+</mat-toolbar> -->
+
+<main class="main">
+  <mat-card class="error-card">
+    <mat-card-header>
+    <mat-icon style="font-size: 48px; width: 48px; height: 48px; margin-left: auto;">error_outline</mat-icon>
+      <mat-card-title>404 - Az oldal nem található</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p style="color: var(--medium-gray);">
+        A keresett oldal nem létezik, vagy hibás linket írt be. Kérjük, ellenőrizze a címet, vagy térjen vissza a főoldalra.
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" [routerLink]="'/home'" style="background-color: var(--dark-gray); color: var(--light-gray);">
+        Vissza a főoldalra
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</main>
