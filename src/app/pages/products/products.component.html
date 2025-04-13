@@ -15,6 +15,11 @@
         <button mat-button color="accent">Részletek</button>
       </mat-card-actions>
     </mat-card>
-    <mat-paginator [length]="products.length" [pageSize]="pageSize" (page)="updatePagedProducts()"></mat-paginator>
+    <mat-paginator
+      [length]="products.length"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="pageSizeOptions"
+      (page)="updatePagedProducts()">
+    </mat-paginator>
   </div>
 </main>

@@ -1,8 +1,8 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { Router } from '@angular/router'; // Router importálása
+import { Router } from '@angular/router';
 import { Products } from '../../shared/models/Products';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 
@@ -13,7 +13,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent {
+export class ProductsComponent implements AfterViewInit {
   products: Products[] = [
     {
       productId: 1,
@@ -57,23 +57,27 @@ export class ProductsComponent {
     }
   ];
 
-  constructor(private router: Router) {} // Router injektálása
+  constructor(private router: Router) {}
 
   navigateToProfile(): void {
-    this.router.navigate(['/profile']); // Navigáció a profil oldalra
+    this.router.navigate(['/profile']);
   }
 
   pageSize = 3; // Oldalankénti termékek száma
+  pageSizeOptions = [3, 5, 10]; // Választható opciók a lapmérethez
   pagedProducts: Products[] = []; // Lapozott termékek
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  ngOnInit(): void {
-    this.updatePagedProducts();
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.updatePagedProducts(); // Az első frissítés az oldal betöltése után
+      this.paginator.page.subscribe(() => this.updatePagedProducts()); // Lapozás figyelése
+    });
   }
 
   updatePagedProducts(): void {
-    const startIndex = this.paginator?.pageIndex * this.pageSize || 0;
-    const endIndex = startIndex + this.pageSize;
+    const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
+    const endIndex = startIndex + this.paginator.pageSize;
     this.pagedProducts = this.products.slice(startIndex, endIndex);
   }
 }
