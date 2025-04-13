@@ -34,23 +34,23 @@ main {
 .content {
   width: 800px; // FIXME: ezt a sort lehet ki kell venni
   display: flex;
-  flex-direction: row; /* Alapértelmezett: egymás mellett */
+  flex-direction: row;
   gap: 1rem;
 
   .left-side,
   .right-side {
-    flex: 1; /* Egyenlő szélesség */
+    flex: 1;
   }
 }
 
 @media (max-width: 768px) {
   .content {
-    flex-direction: column; /* Kis képernyőn egymás alá kerülnek */
+    flex-direction: column;
   }
 
   .left-side,
   .right-side {
-    width: 100%; /* Teljes szélesség */
+    width: 100%;
   }
 }
 
@@ -75,8 +75,8 @@ button[mat-raised-button] {
 }
 
 button[mat-raised-button]:hover {
-  background-color: var(--cyan); /* Hover állapotban narancssárga */
-  color: var(--dark-gray); /* Szöveg színe változatlan */
+  background-color: var(--cyan);
+  color: var(--dark-gray);
 }
   
 .profile-container {
@@ -89,11 +89,11 @@ button[mat-raised-button]:hover {
 
 .left-panel,
 .right-panel {
-  flex: 1; /* Egyenlő szélességű panelek */
+  flex: 1;
 }
 
 .avatar {
-  background-color: var(--cyan); /* vagy egyéni szín */
+  background-color: var(--cyan);
   color: var(--dark-gray);
   border-radius: 50%;
   width: 40px;
@@ -106,41 +106,39 @@ button[mat-raised-button]:hover {
 }
 
 .left-side mat-card {
-  margin-bottom: 1.5rem; /* Kártyák közötti távolság */
-  background: var(--blue-gray); /* Kártya háttérszíne */
-  color: var(--light-gray); /* Szöveg színe */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Árnyék */
-  border-radius: 8px; /* Lekerekített sarkok */
+  margin-bottom: 1.5rem;
+  background: var(--blue-gray);
+  color: var(--light-gray);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
   padding: 1rem;
 }
 
 .left-side mat-card-title {
   margin-top: 5px;
-  font-size: 1.25rem; /* Nagyobb cím betűméret */
-  // font-weight: bold;
-  // color: var(--cyan); /* Cím színe */
+  font-size: 1.25rem;
 }
 
 .left-side mat-card-content p {
-  font-size: 1rem; /* Szöveg betűmérete */
+  font-size: 1rem;
   margin: 0.5rem 0;
 }
 
 .avatar {
-  background-color: var(--cyan); /* Avatar háttérszíne */
-  color: var(--dark-gray); /* Avatar szöveg színe */
-  font-size: 1.5rem; /* Nagyobb betűméret az avatarban */
-  width: 50px; /* Nagyobb méret */
+  background-color: var(--cyan);
+  color: var(--dark-gray);
+  font-size: 1.5rem;
+  width: 50px;
   height: 50px;
 }
 
 .divider {
-  background: var(--gradient-vertical); /* Elválasztó vonal színe */
+  background: var(--gradient-vertical);
   height: auto;
 }
 
 .right-side p {
-  color: var(--medium-gray); /* Jobb oldali szöveg színe */
+  color: var(--medium-gray);
   font-size: 0.95rem;
 }
 
@@ -159,7 +157,6 @@ button[mat-raised-button]:hover {
 
 .right-side mat-card-title {
   font-size: 1.25rem;
-  // font-weight: bold;
   color: var(--cyan);
 }
 
@@ -171,25 +168,24 @@ button[mat-raised-button]:hover {
 
 .right-side mat-list-item {
   display: flex;
-  // flex-direction: column; /* A szövegek egymás alá kerülnek */
-  align-items: flex-start; /* Balra igazítás */
-  margin-bottom: 1rem; /* Távolság az elemek között */
+  align-items: flex-start;
+  margin-bottom: 1rem;
   height: auto;
 }
 
 .right-side mat-list-item div[mat-line] {
-  font-size: 1rem; /* Szöveg mérete */
-  line-height: 1.5; /* Sorok közötti távolság */
-  color: var(--light-gray); /* Szöveg színe */
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--light-gray);
 }
 
 .right-side mat-list-item:last-child {
-  margin-bottom: 0; /* Az utolsó elem alatt ne legyen extra margó */
+  margin-bottom: 0;
 }
 
 .purchase-button {
   margin-top: 1rem;
   width: 100%;
   font-weight: bold;
-  text-transform: uppercase; /* Nagybetűs szöveg */
+  text-transform: uppercase;
 }

@@ -27,8 +27,8 @@ import { MatBadgeModule } from '@angular/material/badge';
 export class AppComponent implements OnInit {
   title = 'learnflow';
   isLoggedIn = false;
-  isDropdownOpen = false; // Új állapotváltozó
-  cartItemCount = 3; // Statikus érték, amíg nincs adatbázis
+  isDropdownOpen = false;
+  cartItemCount = 3;
 
   constructor() {}
 

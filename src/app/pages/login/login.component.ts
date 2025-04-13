@@ -19,7 +19,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatInputModule,
     MatButtonModule,
     MatDividerModule,
-    MatProgressSpinnerModule, // Spinner modul importálása
+    MatProgressSpinnerModule,
     RouterModule
   ],
   templateUrl: './login.component.html',
@@ -27,7 +27,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 })
 export class LoginComponent {
   loginForm: FormGroup;
-  loading = false; // Töltőképernyő állapota
+  loading = false;
 
   constructor(private fb: FormBuilder) {
     this.loginForm = this.fb.group({
@@ -40,16 +40,15 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       const { username, password } = this.loginForm.value;
   
-      // Statikus bejelentkezési adatok
       const validUsername = 'test';
       const validPassword = 'test';
   
       if (username === validUsername && password === validPassword) {
-        this.loading = true; // Töltőképernyő megjelenítése
+        this.loading = true; // Töltőképernyő
         setTimeout(() => {
           this.loading = false; // Töltőképernyő elrejtése
-          localStorage.setItem('isLoggedIn', 'true'); // Bejelentkezés állapot mentése
-          window.location.href = '/home'; // Átirányítás a főoldalra
+          localStorage.setItem('isLoggedIn', 'true');
+          window.location.href = '/home';
         }, 1000);
       } else {
         alert('Hibás felhasználónév vagy jelszó!');

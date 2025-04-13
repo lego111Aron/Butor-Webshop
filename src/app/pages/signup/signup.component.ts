@@ -34,7 +34,6 @@ export class SignupComponent {
   signupForm: FormGroup;
   loading = false;
 
-  // User típusú változó
   user: User | null = null;
 
   formattedAddress: string = '';
@@ -55,7 +54,6 @@ export class SignupComponent {
       const password = this.signupForm.value.password;
       const confirmPassword = this.signupForm.value.confirmPassword;
   
-      // Jelszó ellenőrzés switch-case szerkezettel
       switch (true) {
         case password !== confirmPassword:
           alert('A jelszavak nem egyeznek meg!');
@@ -67,16 +65,15 @@ export class SignupComponent {
   
         default:
           this.loading = true;
-  
-          // A form értékeinek átmásolása a user változóba
+
           this.user = {
-            userId: Date.now(), // Ideiglenes azonosító
+            userId: Date.now(),
             name: this.signupForm.value.username,
             streetAndHouseNumber: this.signupForm.value.address,
             email: this.signupForm.value.email,
             zipCode: +this.signupForm.value.zipCode,
             password: password,
-            userRole: 'felhasználó', // Alapértelmezett szerepkör
+            userRole: 'felhasználó',
             shoppingCart: [],
             purchaseHistory: []
           };
