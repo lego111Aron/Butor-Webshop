@@ -16,8 +16,21 @@ import { MatCardModule } from '@angular/material/card'; // <== MatCard hozzáad�
 })
 export class ProfileComponent {
   username: string = 'test';
+  userRole: string = 'felhasználó';
 
   get usernameInitial(): string {
     return this.username.charAt(0).toUpperCase();
+  }
+
+  getUserRoleText(): string {
+    switch (this.userRole) {
+      case 'admin':
+        return 'Ez egy admin profil';
+      case undefined:
+      case null:
+        return 'Hiányzó jogosultság';
+      default:
+        return 'Bejelentkezett felhasználó';
+    }
   }
 }

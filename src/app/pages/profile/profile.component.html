@@ -5,7 +5,9 @@
           <mat-card-header>
             <div mat-card-avatar class="avatar">{{ usernameInitial }}</div>
             <mat-card-title class="username">{{ username }}</mat-card-title>
-            <mat-card-subtitle>Bejelentkezett felhasználó</mat-card-subtitle>
+            <mat-card-subtitle>
+              {{ getUserRoleText() }}
+            </mat-card-subtitle>
           </mat-card-header>
           <!-- <mat-card-content>
             <p>Üdvözlünk, {{ username }}!</p>
