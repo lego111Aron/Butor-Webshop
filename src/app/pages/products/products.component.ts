@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { Router } from '@angular/router'; // Router importálása
 import { Products } from '../../shared/models/Products';
 
 @Component({
@@ -12,7 +13,6 @@ import { Products } from '../../shared/models/Products';
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent {
-  // TODO: ezeket át kéne tenni egy json file-ba
   products: Products[] = [
     {
       productId: 1,
@@ -55,4 +55,10 @@ export class ProductsComponent {
       type: 'Bútor'
     }
   ];
+
+  constructor(private router: Router) {} // Router injektálása
+
+  navigateToProfile(): void {
+    this.router.navigate(['/profile']); // Navigáció a profil oldalra
+  }
 }
