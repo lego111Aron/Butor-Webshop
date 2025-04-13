@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router'; // Router importálása
 import { Products } from '../../shared/models/Products';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatButtonModule],
+  imports: [CommonModule, MatCardModule, MatButtonModule, MatPaginatorModule],
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
@@ -60,5 +61,19 @@ export class ProductsComponent {
 
   navigateToProfile(): void {
     this.router.navigate(['/profile']); // Navigáció a profil oldalra
+  }
+
+  pageSize = 3; // Oldalankénti termékek száma
+  pagedProducts: Products[] = []; // Lapozott termékek
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  ngOnInit(): void {
+    this.updatePagedProducts();
+  }
+
+  updatePagedProducts(): void {
+    const startIndex = this.paginator?.pageIndex * this.pageSize || 0;
+    const endIndex = startIndex + this.pageSize;
+    this.pagedProducts = this.products.slice(startIndex, endIndex);
   }
 }
