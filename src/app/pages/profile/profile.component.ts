@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatCardModule } from '@angular/material/card'; // <== MatCard hozzáadása
+import { MatCardModule } from '@angular/material/card';
 import { User } from '../../shared/models/User';
 import { Injectable } from '@angular/core';
 import { ShoppingCart } from '../../shared/models/ShoppingCart';
@@ -17,7 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatListModule,
     MatButtonModule,
     MatDividerModule,
-    MatCardModule // <== Fontos!
+    MatCardModule
   ],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
@@ -100,8 +100,7 @@ export class ProfileComponent {
       return;
     }
   
-    // Vásárlási logika (pl. adatok mentése, kosár ürítése)
     alert('Köszönjük a vásárlást!');
-    this.clearCart(); // Kosár ürítése
+    this.clearCart();
   }
 }

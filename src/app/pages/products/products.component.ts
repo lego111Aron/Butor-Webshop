@@ -12,6 +12,7 @@ import { Products } from '../../shared/models/Products';
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent {
+  // TODO: ezeket át kéne tenni egy json file-ba
   products: Products[] = [
     {
       productId: 1,

@@ -23,7 +23,7 @@ export class MenuComponent implements OnInit, AfterViewInit {
   @Input() sidenav!: MatSidenav;
   @Input() isLoggedIn: boolean = false;
   @Output() logoutEvent = new EventEmitter<void>();
-  @Input() cartItemCount: number = 0; // Kosárban lévő elemek száma
+  @Input() cartItemCount: number = 0;
 
   constructor() {
     console.log("constructor called");
@@ -31,7 +31,7 @@ export class MenuComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     console.log("ngOnInit called");
-    this.isLoggedIn = localStorage.getItem('isLoggedIn') === 'true'; // Bejelentkezési állapot betöltése
+    this.isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
   }
 
   ngAfterViewInit(): void {
@@ -52,8 +52,8 @@ export class MenuComponent implements OnInit, AfterViewInit {
   // }
 
   logout() {
-    localStorage.removeItem('isLoggedIn'); // Bejelentkezési állapot törlése
-    this.logoutEvent.emit(); // Esemény kibocsátása
+    localStorage.removeItem('isLoggedIn');
+    this.logoutEvent.emit();
     this.closeMenu();
   }
 }

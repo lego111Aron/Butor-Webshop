@@ -1,14 +1,13 @@
-/* filepath: c:\Egyetem\Webfejlesztesi keretrendszerek\Projekt\Butor-Webshop\src\app\pages\products\products.component.scss */
 :host {
   display: block;
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Segoe UI Symbol";
   box-sizing: border-box;
-  height: 100%; /* A :host magasságának beállítása */
+  height: 100%;
 }
 
 html, body {
-  height: 100%; /* Az oldal teljes magasságának biztosítása */
-  margin: 0; /* Margin eltávolítása */
+  height: 100%;
+  margin: 0;
 }
 
 .main {

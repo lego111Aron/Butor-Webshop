@@ -1,5 +1,3 @@
-// src/app/shared/constants.ts
-
 export const FurnitureList = [
   {
     id: 'chair-001',

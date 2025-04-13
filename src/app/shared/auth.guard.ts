@@ -10,7 +10,7 @@ export class AuthGuard implements CanActivate {
   canActivate(): boolean {
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
     if (!isLoggedIn) {
-      this.router.navigate(['/login']); // Átirányítás a bejelentkezési oldalra
+      this.router.navigate(['/login']);
       return false;
     }
     return true;

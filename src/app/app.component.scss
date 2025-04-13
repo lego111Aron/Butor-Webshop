@@ -15,12 +15,12 @@ ul {
 
 a {
     text-decoration: none;
-    color: var(--light-gray); /* Szöveg színe */
+    color: var(--light-gray);
     font-size: 25px;
     transition: color 0.3s ease;
 
     &:hover {
-        color: var(--cyan); /* Hover szín */
+        color: var(--cyan);
     }
 }
 
@@ -29,23 +29,23 @@ mat-sidenav-container {
 }
 
 mat-toolbar {
-    background-color: var(--blue-gray); /* Toolbar háttérszín */
-    color: var(--light-gray); /* Toolbar szöveg színe */
+    background-color: var(--blue-gray);
+    color: var(--light-gray);
     transition: color 0.3s ease;
 
     mat-icon {
-        color: var(--light-gray); /* Ikon színe */
+        color: var(--light-gray);
         transition: color 0.3s ease;
 
         &:hover {
-            color: var(--cyan); /* Ikon hover színe */
+            color: var(--cyan);
         }
     }
 }
 
 mat-sidenav {
     border-radius: 0;
-    background-color: var(--dark-gray); /* Sidenav háttérszín */
+    background-color: var(--dark-gray);
 }
 
 .menu-toggle-button {
@@ -54,30 +54,30 @@ mat-sidenav {
 
 @media (max-width: 768px) {
     .menu-toggle-button {
-        display: block; /* Mobil nézetben megjelenik a menü gomb */
+        display: block;
     }
     
     nav ul {
-        display: none; /* Mobil nézetben rejtve van a menü */
+        display: none;
     }
 }
 
 @media (min-width: 769px) {
     .menu-toggle-button {
-        display: none; /* Asztali nézetben rejtve marad a menü gomb */
+        display: none;
     }
 
     nav ul {
-        display: flex; /* Asztali nézetben látható a menü */
+        display: flex;
     }
 }
 
 .dropdown-menu {
     position: absolute;
-    top: 64px; /* Toolbar magassága */
+    top: 64px;
     left: 0;
     width: 100%;
-    background-color: var(--dark-gray); /* Menü háttérszíne */
+    background-color: var(--dark-gray);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     z-index: 1000;
     display: flex;

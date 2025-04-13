@@ -60,8 +60,8 @@ button[mat-raised-button] {
 }
 
 button[mat-raised-button]:hover {
-  background-color: var(--cyan); /* Hover állapotban narancssárga */
-  color: var(--light-gray); /* Szöveg színe változatlan */
+  background-color: var(--cyan);
+  color: var(--light-gray);
 }
 
 .social-links {

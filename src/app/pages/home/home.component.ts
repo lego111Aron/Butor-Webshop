@@ -17,7 +17,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class HomeComponent {
   constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {
-    // Regisztráljuk a GitHub ikont
     this.matIconRegistry.addSvgIcon(
       'github',
       this.domSanitizer.bypassSecurityTrustResourceUrl('icons/github.svg')
