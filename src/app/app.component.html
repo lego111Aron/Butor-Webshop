@@ -1,6 +1,6 @@
 <mat-sidenav-container>
   <mat-sidenav #sidenav>
-    <app-menu [sidenav]="sidenav" [isLoggedIn]="isLoggedIn" (logoutEvent)="logout()"></app-menu>
+    <app-menu [sidenav]="sidenav" [isLoggedIn]="isLoggedIn" [cartItemCount]="cartItemCount" (logoutEvent)="logout()"></app-menu>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar>
@@ -16,8 +16,7 @@
           <!-- <li><a routerLink="/home">Home</a></li> -->
           <li>
             @if (isLoggedIn) {
-              <a mat-list-item routerLink="/profile">
-                <!-- <mat-icon matListItemIcon>person</mat-icon> -->
+              <a mat-list-item routerLink="/profile" matBadge="{{ cartItemCount }}" matBadgeSize="small" matBadgeColor="accent">
                 <span matListItemTitle>Profile</span>
               </a>
             }

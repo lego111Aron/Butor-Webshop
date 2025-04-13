@@ -6,6 +6,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
+import { MatBadgeModule } from '@angular/material/badge';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,7 @@ import { CommonModule } from '@angular/common';
     MatButtonModule,
     MatIconModule,
     RouterLink,
+    MatBadgeModule,
     MenuComponent
   ],
   templateUrl: './app.component.html',
@@ -26,6 +28,7 @@ export class AppComponent implements OnInit {
   title = 'learnflow';
   isLoggedIn = false;
   isDropdownOpen = false; // Új állapotváltozó
+  cartItemCount = 3; // Statikus érték, amíg nincs adatbázis
 
   constructor() {}
 
@@ -56,4 +59,5 @@ export class AppComponent implements OnInit {
   toggleDropdownMenu(): void {
     this.isDropdownOpen = !this.isDropdownOpen;
   }
+  
 }

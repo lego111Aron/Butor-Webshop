@@ -4,6 +4,7 @@ import { MatListModule } from '@angular/material/list'
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenav } from '@angular/material/sidenav';
 import { CommonModule } from '@angular/common';
+import { MatBadgeModule } from '@angular/material/badge';
 
 @Component({
   selector: 'app-menu',
@@ -12,6 +13,7 @@ import { CommonModule } from '@angular/common';
     RouterLink,
     RouterLinkActive,
     MatListModule,
+    MatBadgeModule,
     MatIconModule
   ],
   templateUrl: './menu.component.html',
@@ -21,6 +23,7 @@ export class MenuComponent implements OnInit, AfterViewInit {
   @Input() sidenav!: MatSidenav;
   @Input() isLoggedIn: boolean = false;
   @Output() logoutEvent = new EventEmitter<void>();
+  @Input() cartItemCount: number = 0; // Kosárban lévő elemek száma
 
   constructor() {
     console.log("constructor called");
