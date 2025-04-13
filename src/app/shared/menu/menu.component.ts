@@ -41,9 +41,16 @@ export class MenuComponent implements OnInit, AfterViewInit {
     }
   }
 
+  // TODO: lehet, hogy itt hiba van, de itt a régi verzió:
+  // logout() {
+  //   localStorage.setItem('isLoggedIn', 'false');
+  //   window.location.href = '/home';
+  //   this.closeMenu();
+  // }
+
   logout() {
     localStorage.removeItem('isLoggedIn'); // Bejelentkezési állapot törlése
-    window.location.href = '/home'; // Átirányítás a főoldalra
+    this.logoutEvent.emit(); // Esemény kibocsátása
     this.closeMenu();
   }
 }

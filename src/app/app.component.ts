@@ -37,7 +37,17 @@ export class AppComponent implements OnInit {
     this.isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
   }
 
+
+
+  // TODO: lehet, hogy itt hiba van, de itt a régi verzió:
+  // logout(): void {
+  //   localStorage.setItem('isLoggedIn', 'false');
+  //   this.isLoggedIn = false;
+  //   window.location.href = '/home';
+  // }
+
   logout(): void {
+    // console.log('Logout');
     localStorage.setItem('isLoggedIn', 'false');
     this.isLoggedIn = false;
     window.location.href = '/home';
