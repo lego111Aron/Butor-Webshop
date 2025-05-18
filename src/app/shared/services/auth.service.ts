@@ -89,4 +89,8 @@ export class AuthService {
       throw error;
     }
   }
+
+  getCurrentUserSync(): User | null {
+    return this.auth.currentUser;
+  }
 }

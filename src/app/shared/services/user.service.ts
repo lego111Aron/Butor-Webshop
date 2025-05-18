@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Firestore, doc, getDoc } from '@angular/fire/firestore';
+import { Firestore, doc, getDoc, updateDoc } from '@angular/fire/firestore';
 import { AuthService } from './auth.service';
 import { Observable, from, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { User } from '../models/User';
+import { updatePassword, EmailAuthProvider, reauthenticateWithCredential } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -88,5 +89,19 @@ export class UserService {
         stats: { cartItems: 0, purchaseCount: 0, totalSpent: 0 }
       };
     }
+  }
+
+  async updateUserProfile(userId: string, data: Partial<User>): Promise<void> {
+    const userDocRef = doc(this.firestore, 'Users', userId);
+    await updateDoc(userDocRef, data);
+  }
+
+  async updateUserPassword(email: string, newPassword: string): Promise<void> {
+    const user = this.authService.getCurrentUserSync();
+    if (!user) throw new Error('Nem vagy bejelentkezve!');
+    // Ha szükséges, reauth (Firebase policy miatt)
+    // const credential = EmailAuthProvider.credential(email, currentPassword);
+    // await reauthenticateWithCredential(user, credential);
+    await updatePassword(user, newPassword);
   }
 }

@@ -5,13 +5,17 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { UserService } from '../../shared/services/user.service';
+import { ShoppingcartService } from '../../shared/services/shoppingcart.service';
 import { User } from '../../shared/models/User';
 import { ShoppingCart } from '../../shared/models/ShoppingCart';
 import { PurchaseHistory } from '../../shared/models/PurchaseHistory';
-import { ShoppingcartService } from '../../shared/services/shoppingcart.service';
 import { Timestamp } from '@angular/fire/firestore';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
 
 @Component({
   selector: 'app-profile',
@@ -22,13 +26,14 @@ import { Timestamp } from '@angular/fire/firestore';
     MatIconModule,
     MatDividerModule,
     MatListModule,
-    MatButtonModule
+    MatButtonModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-
-
 export class ProfileComponent implements OnInit, OnDestroy {
   user: User | null = null;
   shoppingCart: ShoppingCart[] = [];
@@ -39,13 +44,22 @@ export class ProfileComponent implements OnInit, OnDestroy {
     totalSpent: 0
   };
   isLoading = true;
+  editForm: FormGroup;
 
   private subscription: Subscription | null = null;
 
   constructor(
+    private fb: FormBuilder,
     private userService: UserService,
     private shoppingcartService: ShoppingcartService
-  ) {}
+  ) {
+    this.editForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      streetAndHouseNumber: ['', Validators.required],
+      zipCode: ['', [Validators.required, Validators.pattern('^[0-9]{4}$')]],
+      password: ['']
+    });
+  }
 
   ngOnInit(): void {
     this.loadUserProfile();
@@ -61,7 +75,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
       next: (data) => {
         this.user = data.user;
         this.shoppingCart = data.user?.shoppingCart || [];
-        // Átalakítás: minden purchaseHistory elem purchaseDate-jét Date-re konvertáljuk, ha Timestamp
         this.purchaseHistory = (data.user?.purchaseHistory || []).map(history => ({
           ...history,
           purchaseDate: isTimestamp(history.purchaseDate)
@@ -70,6 +83,14 @@ export class ProfileComponent implements OnInit, OnDestroy {
         }));
         this.stats = data.stats ?? { cartItems: 0, purchaseCount: 0, totalSpent: 0 };
         this.isLoading = false;
+        // Form mezők feltöltése
+        if (this.user) {
+          this.editForm.patchValue({
+            email: this.user.email,
+            streetAndHouseNumber: this.user.streetAndHouseNumber,
+            zipCode: this.user.zipCode
+          });
+        }
       },
       error: (error) => {
         console.error('Hiba a felhasználói profil betöltésekor:', error);
@@ -99,10 +120,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
     return this.shoppingCart.reduce((total, item) => total + item.price * item.quantity, 0);
   }
 
-  clearCart(): void {
-    this.shoppingCart = [];
-  }
-
   async onPurchase(): Promise<void> {
     if (this.shoppingCart.length === 0) {
       alert('A kosár üres! Kérjük, adjon hozzá termékeket.');
@@ -111,14 +128,44 @@ export class ProfileComponent implements OnInit, OnDestroy {
     try {
       await this.shoppingcartService.purchaseCart();
       alert('Köszönjük a vásárlást!');
-      this.loadUserProfile(); // Frissítsd a profilt, hogy látszódjon a változás
+      this.loadUserProfile(); // Frissíti a kosarat és az előzményeket
     } catch (error: any) {
       alert(error.message || 'Hiba történt a vásárlás során!');
     }
   }
+
+  async onUpdateProfile(): Promise<void> {
+    if (this.editForm.invalid) {
+      this.editForm.markAllAsTouched();
+      return;
+    }
+    if (!this.user) return;
   
+    const { email, streetAndHouseNumber, zipCode, password } = this.editForm.value;
+  
+    try {
+      // 1. Email, cím, irányítószám frissítése Firestore-ban
+      await this.userService.updateUserProfile(this.user.userId, {
+        email,
+        streetAndHouseNumber,
+        zipCode
+      });
+  
+      // 2. Jelszó frissítése csak ha nem üres
+      if (password && password.trim().length > 0) {
+        await this.userService.updateUserPassword(email, password);
+      }
+  
+      alert('Adatok sikeresen frissítve!');
+      this.loadUserProfile();
+      this.editForm.patchValue({ password: '' }); // ürítsd ki a jelszó mezőt
+    } catch (error: any) {
+      alert(error.message || 'Hiba történt a frissítés során!');
+    }
+  }
 }
 
+// Segédfüggvény Firestore Timestamp felismeréséhez
 function isTimestamp(obj: any): obj is Timestamp {
   return obj && typeof obj.toDate === 'function';
 }

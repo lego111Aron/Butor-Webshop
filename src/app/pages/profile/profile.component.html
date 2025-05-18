@@ -10,22 +10,31 @@
           </mat-card-subtitle>
         </mat-card-header>
       </mat-card>
-
+    
       <mat-card>
-        <mat-card-title>Email:</mat-card-title>
-        <mat-card-content>
-          <p>{{ user?.email }}</p>
-        </mat-card-content>
-        
-        <mat-card-title>Utca és házszám:</mat-card-title>
-        <mat-card-content>
-          <p>{{ user?.streetAndHouseNumber }}</p>
-        </mat-card-content>
-        
-        <mat-card-title>Irányítószám:</mat-card-title>
-        <mat-card-content>
-          <p>{{ user?.zipCode }}</p>
-        </mat-card-content>
+        <form [formGroup]="editForm" class="edit-form" (ngSubmit)="onUpdateProfile()">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" formControlName="email" readonly />
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Utca és házszám</mat-label>
+            <input matInput type="text" formControlName="streetAndHouseNumber" />
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Irányítószám</mat-label>
+            <input matInput type="number" formControlName="zipCode" />
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Jelszó</mat-label>
+            <input matInput type="password" formControlName="password" autocomplete="new-password" />
+          </mat-form-field>
+          <div style="margin-top: 1rem;">
+            <button mat-raised-button color="primary" type="submit">
+              Adatok módosítása
+            </button>
+          </div>
+        </form>
       </mat-card>
     </div>
 
