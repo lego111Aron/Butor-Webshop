@@ -6,8 +6,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -28,31 +29,34 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 export class LoginComponent {
   loginForm: FormGroup;
   loading = false;
+  error: string | null = null;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
     this.loginForm = this.fb.group({
-      username: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
   }
 
   onSubmit(): void {
     if (this.loginForm.valid) {
-      const { username, password } = this.loginForm.value;
-  
-      const validUsername = 'test';
-      const validPassword = 'test';
-  
-      if (username === validUsername && password === validPassword) {
-        this.loading = true; // Töltőképernyő
-        setTimeout(() => {
-          this.loading = false; // Töltőképernyő elrejtése
-          localStorage.setItem('isLoggedIn', 'true');
-          window.location.href = '/home';
-        }, 1000);
-      } else {
-        alert('Hibás felhasználónév vagy jelszó!');
-      }
+      this.loading = true;
+      this.error = null;
+      const { email, password } = this.loginForm.value;
+      this.authService.login(email, password).subscribe({
+        next: () => {
+          this.loading = false;
+          this.router.navigate(['/home']);
+        },
+        error: (err) => {
+          this.loading = false;
+          this.error = 'Hibás email vagy jelszó!';
+        }
+      });
     }
   }
 }
