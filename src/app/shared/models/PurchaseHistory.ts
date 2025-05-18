@@ -1,6 +1,7 @@
+import { ShoppingCart } from "./ShoppingCart";
+
 export interface PurchaseHistory {
     itemId: number;
-    itemName: string;
-    purchasePrice: number;
+    shoppingCart: ShoppingCart[];
     purchaseDate: Date;
 }

@@ -82,7 +82,6 @@
 
 <main class="main">
   <div class="content">
-    <!-- Töltőképernyő -->
     <div class="loading-overlay" *ngIf="loading">
       <mat-spinner></mat-spinner>
       <p>Egy pillanat...</p>
@@ -90,10 +89,10 @@
 
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form-group">
       <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Felhasználónév</mat-label>
-        <input matInput type="text" formControlName="username" placeholder="Felhasználónév" />
-        <mat-error *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched">
-          A felhasználónév megadása kötelező!
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" placeholder="Email" />
+        <mat-error *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+          Érvényes email megadása kötelező!
         </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline" class="full-width">
@@ -105,6 +104,8 @@
       </mat-form-field>
 
       <mat-divider></mat-divider>
+
+      <div *ngIf="error" style="color: #ff5252; margin-bottom: 1rem;">{{ error }}</div>
 
       <div class="button-group">
         <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid || loading">

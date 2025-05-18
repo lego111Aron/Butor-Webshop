@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { Products } from '../../shared/models/Products';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { ShoppingcartService } from '../../shared/services/shoppingcart.service';
 
 @Component({
   selector: 'app-products',
@@ -57,7 +58,10 @@ export class ProductsComponent implements AfterViewInit {
     }
   ];
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private shoppingcartService: ShoppingcartService // <-- hozzáadva
+  ) {}
 
   navigateToProfile(): void {
     this.router.navigate(['/profile']);
@@ -79,5 +83,17 @@ export class ProductsComponent implements AfterViewInit {
     const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
     const endIndex = startIndex + this.paginator.pageSize;
     this.pagedProducts = this.products.slice(startIndex, endIndex);
+  }
+
+  addToCart(product: Products): void {
+    const cartItem = {
+      itemId: product.productId.toString(),
+      itemName: product.productName,
+      price: product.price,
+      quantity: 1
+    };
+    this.shoppingcartService.addToCart(cartItem)
+      .then(() => alert('A termék a kosárba került!'))
+      .catch(() => alert('Hiba történt a kosárhoz adáskor!'));
   }
 }
