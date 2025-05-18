@@ -83,34 +83,49 @@
 <main class="main">
   <div class="content">
     <!-- Töltőképernyő -->
-    <div class="loading-overlay" *ngIf="loading">
+    <div class="loading-overlay" *ngIf="isLoading">
       <mat-spinner></mat-spinner>
       <p>Egy pillanat...</p>
     </div>
 
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form-group">
+    <form *ngIf="showLoginForm" (ngSubmit)="login()" class="form-group">
       <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Felhasználónév</mat-label>
-        <input matInput type="text" formControlName="username" placeholder="Felhasználónév" />
-        <mat-error *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched">
-          A felhasználónév megadása kötelező!
+        <mat-label>Email</mat-label>
+        <input matInput type="email" [formControl]="email" placeholder="Email" autocomplete="username" />
+        <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">
+          <ng-container *ngIf="email.errors?.['required']">
+            Az email megadása kötelező!
+          </ng-container>
+          <ng-container *ngIf="email.errors?.['email']">
+            Érvényes email címet adj meg!
+          </ng-container>
         </mat-error>
       </mat-form-field>
+
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Jelszó</mat-label>
-        <input matInput type="password" formControlName="password" placeholder="Jelszó" />
-        <mat-error *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
-          A jelszó megadása kötelező!
+        <input matInput type="password" [formControl]="password" placeholder="Jelszó" autocomplete="current-password" />
+        <mat-error *ngIf="password.invalid && (password.dirty || password.touched)">
+          <ng-container *ngIf="password.errors?.['required']">
+            A jelszó megadása kötelező!
+          </ng-container>
+          <ng-container *ngIf="password.errors?.['minlength']">
+            A jelszónak legalább 6 karakter hosszúnak kell lennie!
+          </ng-container>
         </mat-error>
       </mat-form-field>
 
       <mat-divider></mat-divider>
 
+      <div *ngIf="loginError" class="error-message" style="color: #ff5252; margin-bottom: 1rem;">
+        {{ loginError }}
+      </div>
+
       <div class="button-group">
-        <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid || loading">
+        <button mat-raised-button color="primary" type="submit" [disabled]="email.invalid || password.invalid || isLoading">
           Bejelentkezés
         </button>
-        <button mat-raised-button color="primary" [routerLink]="'/signup'">
+        <button mat-raised-button color="primary" [routerLink]="'/signup'" type="button">
           Regisztráció
         </button>
       </div>

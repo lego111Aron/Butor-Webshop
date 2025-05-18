@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router, RouterOutlet, RouterLink } from '@angular/router';
 import { MenuComponent } from './shared/menu/menu.component';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
@@ -7,6 +7,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { MatBadgeModule } from '@angular/material/badge';
+import { AuthService } from './shared/services/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -24,23 +26,25 @@ import { MatBadgeModule } from '@angular/material/badge';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'learnflow';
   isLoggedIn = false;
-  isDropdownOpen = false;
-  cartItemCount = 3;
+  // isDropdownOpen = false;
+  // cartItemCount = 3;
+  private authSubscription?: Subscription;
 
-  constructor() {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.checkLoginStatus();
+    this.authSubscription = this.authService.currentUser.subscribe(user => {
+      this.isLoggedIn = !!user;
+      localStorage.setItem('isLoggedIn', this.isLoggedIn ? 'true' : 'false');
+    });
   }
 
-  checkLoginStatus(): void {
-    this.isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+  ngOnDestroy(): void {
+    this.authSubscription?.unsubscribe();
   }
-
-
 
   // TODO: lehet, hogy itt hiba van, de itt a régi verzió:
   // logout(): void {
@@ -50,14 +54,15 @@ export class AppComponent implements OnInit {
   // }
 
   logout(): void {
-    // console.log('Logout');
-    localStorage.setItem('isLoggedIn', 'false');
-    this.isLoggedIn = false;
-    window.location.href = '/home';
+    this.authService.signOut();
   }
 
-  toggleDropdownMenu(): void {
-    this.isDropdownOpen = !this.isDropdownOpen;
+  // toggleDropdownMenu(): void {
+  //   this.isDropdownOpen = !this.isDropdownOpen;
+  // }
+
+  onToggleSidenav(sidenav: MatSidenav): void {
+    sidenav.toggle();
   }
   
 }

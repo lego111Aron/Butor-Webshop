@@ -1,7 +1,8 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './pages/login/login.component';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
-import { AuthGuard } from './shared/auth.guard';
+// import { AuthGuard } from './shared/auth.guard';
+import { authGuard, publicGuard } from './shared/guards/auth/auth.guard';
+
 
 export const routes: Routes = [
     {
@@ -10,20 +11,23 @@ export const routes: Routes = [
     },
     {
         path: 'login',
-        loadComponent: () => import('./pages/login/login.component').then(m => m.LoginComponent)
+        loadComponent: () => import('./pages/login/login.component').then(m => m.LoginComponent),
+        canActivate: [publicGuard]
     },
     {
         path: 'profile',
         loadComponent: () => import('./pages/profile/profile.component').then(m => m.ProfileComponent),
-        canActivate: [AuthGuard]
+        canActivate: [authGuard]
     },
     {
         path: 'signup',
-        loadComponent: () => import('./pages/signup/signup.component').then(m => m.SignupComponent)
+        loadComponent: () => import('./pages/signup/signup.component').then(m => m.SignupComponent),
+        canActivate: [publicGuard]
     },
     {
         path: 'products',
-        loadComponent: () => import('./pages/products/products.component').then(m => m.ProductsComponent)
+        loadComponent: () => import('./pages/products/products.component').then(m => m.ProductsComponent),
+        canActivate: [authGuard]
     },
     {
         path: '',
@@ -32,12 +36,6 @@ export const routes: Routes = [
     },
     {
         path: '**',
-        loadComponent: () => import('./shared/page-not-found/page-not-found.component').then(m => m.PageNotFoundComponent)
-    },
-    { 
-        path: '', redirectTo: '/home', pathMatch: 'full'
-    },
-    { 
-        path: '**', component: PageNotFoundComponent // 404-es oldal
-    } 
+        component: PageNotFoundComponent
+    }
 ];
