@@ -1,0 +1,117 @@
+:host {
+  --gradient-vertical: linear-gradient(
+    180deg,
+    var(--cyan) 0%,
+    var(--blue-gray) 100%
+  );
+
+  --gradient-horizontal: linear-gradient(
+    90deg,
+    var(--cyan) 0%,
+    var(--blue-gray) 100%
+  );
+
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+main {
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  box-sizing: inherit;
+  position: relative;
+  background-color: var(--dark-gray);
+}
+
+.content {
+  width: 800px;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+
+  .left-side,
+  .right-side {
+    flex: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+  }
+
+  .left-side,
+  .right-side {
+    width: 100%;
+  }
+}
+
+.divider {
+  width: 1px;
+  background: var(--gradient-vertical);
+  margin-inline: 0.5rem;
+}
+
+.pill-group {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+button[mat-raised-button] {
+  background-color: var(--dark-gray);
+  color: var(--cyan);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+button[mat-raised-button]:hover {
+  background-color: var(--cyan);
+  color: var(--dark-gray);
+}
+
+.left-side mat-card {
+  margin-bottom: 1.5rem;
+  background: var(--blue-gray);
+  color: var(--light-gray);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.left-side mat-card-title {
+  margin-top: 5px;
+  font-size: 1.25rem;
+}
+
+.left-side mat-card-content p {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+}
+
+.username {
+  color: var(--cyan);
+}
+
+.right-side mat-card {
+  margin-bottom: 1rem;
+  background-color: var(--blue-gray);
+  color: var(--light-gray);
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.right-side mat-card-title {
+  font-size: 1.25rem;
+  color: var(--cyan);
+}

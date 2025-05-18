@@ -158,14 +158,13 @@ export class ProfileComponent implements OnInit, OnDestroy {
   
       alert('Adatok sikeresen frissítve!');
       this.loadUserProfile();
-      this.editForm.patchValue({ password: '' }); // ürítsd ki a jelszó mezőt
+      this.editForm.patchValue({ password: '' });
     } catch (error: any) {
       alert(error.message || 'Hiba történt a frissítés során!');
     }
   }
 }
 
-// Segédfüggvény Firestore Timestamp felismeréséhez
 function isTimestamp(obj: any): obj is Timestamp {
   return obj && typeof obj.toDate === 'function';
 }

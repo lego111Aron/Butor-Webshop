@@ -1,6 +1,12 @@
 <mat-sidenav-container>
   <mat-sidenav #sidenav>
-    <app-menu [sidenav]="sidenav" [isLoggedIn]="isLoggedIn" [cartItemCount]="cartItemCount" (logoutEvent)="logout()"></app-menu>
+    <app-menu
+      [sidenav]="sidenav"
+      [isLoggedIn]="isLoggedIn"
+      [isAdmin]="isAdmin"
+      [cartItemCount]="cartItemCount"
+      (logoutEvent)="logout()">
+    </app-menu>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar>
@@ -18,40 +24,42 @@
               <span matListItemTitle>Termékek</span>
             </a>
           </li>
-          <li>
-            @if (isLoggedIn) {
-              <a mat-list-item routerLink="/profile" matBadge="{{ cartItemCount }}" matBadgeSize="small" matBadgeColor="accent">
-                <span matListItemTitle>Profil</span>
-              </a>
-            }
+          <li *ngIf="isLoggedIn">
+            <a mat-list-item routerLink="/profile" matBadge="{{ cartItemCount }}" matBadgeSize="small" matBadgeColor="accent">
+              <span matListItemTitle>Profil</span>
+            </a>
           </li>
-          <li>
-            @if (!isLoggedIn) {
-              <a mat-list-item routerLink="/login">
-                <span matListItemTitle>Bejelentkezés</span>
-              </a>
-            }
+          <li *ngIf="!isLoggedIn">
+            <a mat-list-item routerLink="/login">
+              <span matListItemTitle>Bejelentkezés</span>
+            </a>
           </li>
-          <li>
-            @if (!isLoggedIn) {
-              <a mat-list-item routerLink="/signup">
-                <span matListItemTitle>Regisztráció</span>
-              </a>
-            }
-          </li>        
-          <li>
-            @if (isLoggedIn) {
-              <a mat-list-item (click)="logout()">
-                <span matListItemTitle>Kijelentkezés</span>
-              </a>
-            }
-          </li>      
+          <li *ngIf="!isLoggedIn">
+            <a mat-list-item routerLink="/signup">
+              <span matListItemTitle>Regisztráció</span>
+            </a>
+          </li>
+          <li *ngIf="isLoggedIn">
+            <a mat-list-item (click)="logout()">
+              <span matListItemTitle>Kijelentkezés</span>
+            </a>
+          </li>
+          <li *ngIf="isAdmin">
+            <a mat-list-item routerLink="/admin-page">
+              <span matListItemTitle>Admin</span>
+            </a>
+          </li>
         </ul>
       </nav>
     </mat-toolbar>
     
     <div class="dropdown-menu" *ngIf="isDropdownOpen">
-      <app-menu [isLoggedIn]="isLoggedIn" (logoutEvent)="logout()"></app-menu>
+      <app-menu 
+        [isLoggedIn]="isLoggedIn" 
+        [isAdmin]="isAdmin"
+        [cartItemCount]="cartItemCount"
+        (logoutEvent)="logout()">
+      </app-menu>      
     </div>
     
     <router-outlet></router-outlet>

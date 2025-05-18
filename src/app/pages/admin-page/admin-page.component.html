@@ -1,0 +1,49 @@
+<main class="main">
+  <div class="content">
+    <div class="left-side">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title class="username">Admin felület</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>Itt kezelheted az adminisztrációs funkciókat.</p>
+        </mat-card-content>
+      </mat-card>
+
+      <div style="height: 1.5rem;"></div>
+
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Statisztikák</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="pill-group">
+            <div>
+              <strong>Vásárlással rendelkező felhasználók száma:</strong> {{ userCount }}
+            </div>
+            <div>
+              <strong>Legutóbbi 5 rendelés:</strong>
+              <ul>
+                <li *ngFor="let order of recentOrders">
+                  {{ order.purchaseDate | date:'yyyy-MM-dd' }} – {{ order.shoppingCart?.length || 0 }} tétel ({{ order.userName }})
+                </li>
+              </ul>
+            </div>
+            <div>
+              <strong>Legdrágább rendelés:</strong>
+              <ng-container *ngIf="mostExpensiveOrder; else noOrder">
+                {{ mostExpensiveOrder.total | currency:'HUF' }} ({{ mostExpensiveOrder.userName || 'ismeretlen' }})
+              </ng-container>
+              <ng-template #noOrder>Nincs adat</ng-template>
+            </div>
+            <div>
+              <strong>2025-ben vásárló felhasználók száma:</strong> {{ usersRegistered2025 }}
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="right-side">
+    </div>
+  </div>
+</main>

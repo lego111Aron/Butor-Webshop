@@ -24,6 +24,7 @@ export class MenuComponent implements OnInit, AfterViewInit {
   @Input() isLoggedIn: boolean = false;
   @Output() logoutEvent = new EventEmitter<void>();
   @Input() cartItemCount: number = 0;
+  @Input() isAdmin: boolean = false;
 
   constructor() {
     console.log("constructor called");
