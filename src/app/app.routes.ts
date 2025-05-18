@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 import { AuthGuard } from './shared/auth.guard';
+import { publicGuard, authGuard } from './shared/guards/auth/auth.guard';
 
 export const routes: Routes = [
     {
@@ -10,20 +11,23 @@ export const routes: Routes = [
     },
     {
         path: 'login',
-        loadComponent: () => import('./pages/login/login.component').then(m => m.LoginComponent)
+        loadComponent: () => import('./pages/login/login.component').then(m => m.LoginComponent),
+        canActivate: [publicGuard]
+    },
+    {
+        path: 'signup',
+        loadComponent: () => import('./pages/signup/signup.component').then(m => m.SignupComponent),
+        canActivate: [publicGuard]
     },
     {
         path: 'profile',
         loadComponent: () => import('./pages/profile/profile.component').then(m => m.ProfileComponent),
-        canActivate: [AuthGuard]
-    },
-    {
-        path: 'signup',
-        loadComponent: () => import('./pages/signup/signup.component').then(m => m.SignupComponent)
+        canActivate: [authGuard]
     },
     {
         path: 'products',
-        loadComponent: () => import('./pages/products/products.component').then(m => m.ProductsComponent)
+        loadComponent: () => import('./pages/products/products.component').then(m => m.ProductsComponent),
+        // canActivate: [publicGuard]
     },
     {
         path: '',

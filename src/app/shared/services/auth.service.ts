@@ -24,6 +24,7 @@ import {
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { from } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -38,9 +39,11 @@ export class AuthService {
     this.currentUser = authState(this.auth);
   }
 
-  login(email: string, password: string): Observable<UserCredential> {
-    return from(signInWithEmailAndPassword(this.auth, email, password));
-  }
+    login(email: string, password: string): Observable<UserCredential> {
+      return from(signInWithEmailAndPassword(this.auth, email, password)).pipe(
+        tap(() => this.updateLoginStatus(true))
+      );
+    }
   
   signIn(email: string, password: string): Promise<UserCredential> {
     return signInWithEmailAndPassword(this.auth, email, password);
