@@ -32,12 +32,14 @@ export class AppComponent implements OnInit, OnDestroy {
   isDropdownOpen = false;
   cartItemCount = 3;
   private authSub?: Subscription;
+  isAdmin = false;
 
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
     this.authSub = this.authService.isLoggedIn().subscribe(user => {
       this.isLoggedIn = !!user;
+      this.isAdmin = this.authService.isAdmin; // <-- admin státusz frissítése
     });
   }
 

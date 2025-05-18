@@ -21,6 +21,7 @@ import {
 })
 export class AuthService {
   currentUser: Observable<User | null>;
+    private _isAdmin = false;
   
   constructor(
     private auth: Auth,
@@ -73,7 +74,6 @@ export class AuthService {
         password
       );
 
-      // Firestore user dokumentum létrehozása a saját User modelled alapján
       const userDoc = doc(this.firestore, `Users/${userCredential.user.uid}`);
       await setDoc(userDoc, {
         ...userData,
@@ -92,5 +92,15 @@ export class AuthService {
 
   getCurrentUserSync(): User | null {
     return this.auth.currentUser;
+  }
+
+
+  setAdminStatus(email: string) {
+    const isAdmin = (email === 'admin@admin.com');
+    this._isAdmin = isAdmin;
+    localStorage.setItem('isAdmin', isAdmin ? '1' : '0');
+  }
+  get isAdmin(): boolean {
+    return this._isAdmin || localStorage.getItem('isAdmin') === '1';
   }
 }

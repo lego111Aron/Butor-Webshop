@@ -46,7 +46,6 @@ export class UserService {
     }
   }> {
     try {
-      // Felhasználó adatainak lekérése
       const userDocRef = doc(this.firestore, 'Users', userId);
       const userSnapshot = await getDoc(userDocRef);
       
@@ -59,7 +58,6 @@ export class UserService {
 
       const user = userSnapshot.data() as User;
 
-      // Kosár és vásárlási statisztikák
       const cartItems = user.shoppingCart ? user.shoppingCart.length : 0;
       const purchaseCount = user.purchaseHistory
         ? user.purchaseHistory.reduce((sum, history) => sum + (history.shoppingCart?.length || 0), 0)
@@ -99,9 +97,6 @@ export class UserService {
   async updateUserPassword(email: string, newPassword: string): Promise<void> {
     const user = this.authService.getCurrentUserSync();
     if (!user) throw new Error('Nem vagy bejelentkezve!');
-    // Ha szükséges, reauth (Firebase policy miatt)
-    // const credential = EmailAuthProvider.credential(email, currentPassword);
-    // await reauthenticateWithCredential(user, credential);
     await updatePassword(user, newPassword);
   }
 }

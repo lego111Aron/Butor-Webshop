@@ -50,6 +50,7 @@ export class LoginComponent {
       this.authService.login(email, password).subscribe({
         next: () => {
           this.loading = false;
+          this.authService.setAdminStatus(email);
           this.router.navigate(['/home']);
         },
         error: (err) => {

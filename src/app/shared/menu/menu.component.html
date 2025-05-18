@@ -32,4 +32,10 @@
       <span matListItemTitle>Kijelentkezés</span>
     </a>
   }
+  @if (isAdmin) {
+    <a mat-list-item routerLink="/admin-page" (click)="closeMenu()">
+      <mat-icon matListItemIcon>admin_panel_settings</mat-icon>
+      <span matListItemTitle>Admin</span>
+    </a>
+  }
 </mat-nav-list>
