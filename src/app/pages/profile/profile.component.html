@@ -4,7 +4,7 @@
       <mat-card>
         <mat-card-header>
           <div mat-card-avatar class="avatar">{{ usernameInitial }}</div>
-          <mat-card-title class="username">{{ user.name }}</mat-card-title>
+          <mat-card-title class="username">{{ user?.name }}</mat-card-title>
           <mat-card-subtitle>
             {{ getUserRoleText() }}
           </mat-card-subtitle>
@@ -14,20 +14,19 @@
       <mat-card>
         <mat-card-title>Email:</mat-card-title>
         <mat-card-content>
-          <p>test&#64;test.com</p>
+          <p>{{ user?.email }}</p>
         </mat-card-content>
         
         <mat-card-title>Utca és házszám:</mat-card-title>
         <mat-card-content>
-          <p>test út, 395</p>
+          <p>{{ user?.streetAndHouseNumber }}</p>
         </mat-card-content>
         
         <mat-card-title>Irányítószám:</mat-card-title>
         <mat-card-content>
-          <p>1000</p>
+          <p>{{ user?.zipCode }}</p>
         </mat-card-content>
       </mat-card>
-
     </div>
 
     <div class="divider" role="separator" aria-label="Divider"></div>
@@ -38,8 +37,12 @@
         <mat-card-content>
           <mat-list>
             <mat-list-item *ngFor="let item of shoppingCart">
-              <div mat-line>{{ item.itemName }}</div>
-              <div mat-line>{{ item.price | currency:'HUF' }}</div>
+              <div mat-line>
+                {{ item.itemName }} <span *ngIf="item.quantity > 1">×{{ item.quantity }}</span>
+              </div>
+              <div mat-line>
+                {{ (item.price * item.quantity) | currency:'HUF' }}
+              </div>
             </mat-list-item>
           </mat-list>
           <mat-divider></mat-divider>
@@ -58,11 +61,16 @@
         <mat-card-title>Vásárlási előzmények</mat-card-title>
         <mat-card-content>
           <mat-list>
-            <mat-list-item *ngFor="let history of purchaseHistory">
-              <div mat-line>{{ history.itemName }}</div>
-              <div mat-line>{{ history.purchasePrice | currency:'HUF' }}</div>
-              <div mat-line>{{ history.purchaseDate | date:'yyyy-MM-dd' }}</div>
-            </mat-list-item>
+            <mat-list>
+              <ng-container *ngFor="let history of purchaseHistory">
+                <mat-list-item *ngFor="let item of history.shoppingCart">
+                  <div mat-line>{{ item.itemName }}</div>
+                  <div mat-line>{{ item.price | currency:'HUF' }} × {{ item.quantity }}</div>
+                  <div mat-line>Vásárlás dátuma: {{ history.purchaseDate | date:'yyyy-MM-dd' }}</div>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+              </ng-container>
+            </mat-list>
           </mat-list>
         </mat-card-content>
       </mat-card>

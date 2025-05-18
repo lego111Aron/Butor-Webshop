@@ -60,9 +60,17 @@ export class UserService {
 
       // Kosár és vásárlási statisztikák
       const cartItems = user.shoppingCart ? user.shoppingCart.length : 0;
-      const purchaseCount = user.purchaseHistory ? user.purchaseHistory.length : 0;
+      const purchaseCount = user.purchaseHistory
+        ? user.purchaseHistory.reduce((sum, history) => sum + (history.shoppingCart?.length || 0), 0)
+        : 0;
+      
       const totalSpent = user.purchaseHistory
-        ? user.purchaseHistory.reduce((sum, item) => sum + (item.purchasePrice || 0), 0)
+        ? user.purchaseHistory.reduce((sum, history) =>
+            sum + (history.shoppingCart
+              ? history.shoppingCart.reduce((cartSum, cartItem) =>
+                  cartSum + (cartItem.price * (cartItem.quantity || 1)), 0)
+              : 0)
+          , 0)
         : 0;
 
       return {
