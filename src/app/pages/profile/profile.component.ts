@@ -51,12 +51,12 @@ export class ProfileComponent {
   ];
 
   user: User = {
-    userId: 1,
+    userId: "1",
     name: 'test',
     streetAndHouseNumber: 'Test út, 395',
     email: 'test@test.com',
     zipCode: 1000,
-    password: 'test',
+    // password: 'test',
     userRole: 'felhasználó',
     shoppingCart: this.shoppingCart,
     purchaseHistory: this.purchaseHistory

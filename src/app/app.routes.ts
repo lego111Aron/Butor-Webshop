@@ -27,7 +27,6 @@ export const routes: Routes = [
     {
         path: 'products',
         loadComponent: () => import('./pages/products/products.component').then(m => m.ProductsComponent),
-        // canActivate: [publicGuard]
     },
     {
         path: '',
